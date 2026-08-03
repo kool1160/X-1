@@ -9,7 +9,7 @@
 
 ## Consumable family
 
-The iPT60/PT60 family supports multiple nozzle ratings suitable for a controlled cut-quality test matrix:
+The iPT60/PT60 family is sold with multiple nozzle ratings suitable for a controlled cut-quality test matrix:
 
 - 20 A nozzle: PlasmaDyn/Tech.Mo part 51318.065
 - 30 A nozzle: PlasmaDyn/Tech.Mo part 51318.08
