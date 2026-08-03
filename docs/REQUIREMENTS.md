@@ -44,7 +44,19 @@
 - The configuration shall be stored in this repository and backed up before machine changes.
 - Any use of external step/direction drivers must be documented and electrically verified before connection.
 
-## 6. Plasma interface
+## 6. Operator software
+
+- The finished machine shall have dedicated **X-1 operator software**. A generic G-code sender or the stock FluidNC WebUI alone is not an acceptable finished interface.
+- FluidNC shall remain responsible for embedded motion control, stepping, homing, limits, probing inputs, and real-time machine state.
+- The operator application shall provide a plasma-specific workflow for machine setup, job preparation, execution, recovery, diagnostics, and maintenance.
+- The application shall include machine connection status, homing, dual-Y squaring status, jogging, work offsets, G-code import, validation, preview, perimeter trace, dry run, job queue, run, pause, resume, stop, progress, alarms, and event logging.
+- The application shall expose plasma-specific states including torch command, Arc OK, float/probe state, pierce sequence, cut height, limits, and E-stop status.
+- Jobs should be uploaded to and executed from controller storage when practical rather than depending on continuous Wi-Fi line streaming.
+- The operator application shall preserve machine configuration, job history, material profiles, cut settings, and diagnostic logs locally.
+- Future THC controls and voltage visualization shall be added only after the THC architecture and isolated voltage interface are verified.
+- Software shall never replace hardwired E-stop, torch inhibit, or other required safety circuits.
+
+## 7. Plasma interface
 
 - Torch start shall use verified isolated dry contacts.
 - Arc OK shall enter the controller only through a verified isolated and correctly rated interface.
@@ -52,7 +64,7 @@
 - The first operating release shall use fixed cut height after probing.
 - THC shall be treated as a later design phase after the base machine is reliable.
 
-## 7. Safety
+## 8. Safety
 
 - Emergency stop shall remove torch-enable and motion capability through hardware, not software alone.
 - The controller shall report E-stop state.
@@ -61,7 +73,7 @@
 - The machine shall provide grounding/bonding points, strain relief, cable protection, and service disconnects.
 - Ventilation, fire protection, eye/skin protection, and safe material handling are required operating controls.
 
-## 8. Serviceability
+## 9. Serviceability
 
 - No hidden loose nuts inside closed tube sections.
 - Use rivnuts, weld nuts, tapped plates, studs, or accessible through-bolts.
@@ -69,7 +81,7 @@
 - Cosmetic skins must be removable in sections.
 - Replaceable parts shall use documented hole patterns and part numbers.
 
-## 9. Documentation
+## 10. Documentation
 
 Rev B shall not be released until actual guide and drive components are selected. Rev B must include:
 
@@ -81,5 +93,6 @@ Rev B shall not be released until actual guide and drive components are selected
 - motor and end-support drawings;
 - wiring diagram and terminal schedule;
 - FluidNC configuration;
+- X-1 operator-software architecture and communication specification;
 - alignment and commissioning checklist;
 - released bill of materials.
