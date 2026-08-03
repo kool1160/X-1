@@ -49,11 +49,13 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-008 - Machine length
+### D-008 - Compact half-sheet capacity
 
-- **Decision:** Do not force a nominal 4 x 8 or 4 x 6 size before component selection. Final Y travel will be based on the best-value standard guide and drive lengths.
-- **Target:** Approximately 60-72 inches of usable Y travel.
-- **Status:** Locked approach; final dimension open
+- **Decision:** X-1 shall physically accept and support an untrimmed 48 × 48 inch half-sheet.
+- **Cutting target:** Approximately 48 × 48 inches, with exact usable travel determined from the selected standard guide and drive hardware.
+- **Reason:** Half-sheet compatibility is the important capability missing from many small plasma tables. The existing large laser already handles long work, so X-1 does not need a 4 × 5, 4 × 6, or 4 × 8 envelope.
+- **Cost rule:** Prefer the shortest standard motion components that satisfy the half-sheet requirement. Do not buy longer screws or rails simply to maximize travel.
+- **Status:** Locked requirement; exact travel open until hardware selection
 - **Date:** 2026-08-02
 
 ### D-009 - Dedicated operator software
