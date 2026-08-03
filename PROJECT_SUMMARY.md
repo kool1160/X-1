@@ -51,7 +51,7 @@ The quality target depends on more than the frame. X-1 must treat the complete c
 
 Two plasma sources are already on hand:
 
-- **LOTOS APEX LTP6300DCNC** with machine torch: 20–63 A on 220/240 V, non-HF blowback pilot arc, CNC torch-start input, Arc OK output, and a separate **1:1 raw arc-voltage output**. It is the baseline production candidate because it was previously used on the JD's Garage table and already provides the machine-facing signals X-1 needs. Its raw-voltage output still requires a properly engineered isolated high-voltage divider/THCAD interface.
+- **LOTOS LTP5500DCNC** with machine torch: 20–55 A on 220/240 V, 20–35 A on 110/120 V, non-HF blowback pilot arc, a CNC torch-start interface, and a separate **1:1 raw arc-voltage/THC output**. It is the baseline production candidate because it previously ran on the JD's Garage table and already provides the core machine-facing functions X-1 needs. The raw-voltage output requires a properly engineered isolated high-voltage divider or THCAD interface. Arc OK availability and pinout must be verified on this exact unit rather than assumed.
 - **Everlast PowerPlasma 82i** with machine torch: retained as the higher-amperage development and comparison source.
 
 Neither source is declared production-ready until controlled 10–18 gauge coupon testing establishes kerf, dross, angularity, pierce consistency, small-feature behavior, consumable life, and repeatability.
