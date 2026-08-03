@@ -51,7 +51,7 @@ The quality target depends on more than the frame. X-1 must treat the complete c
 
 Two plasma sources are already on hand:
 
-- **LOTOS LTP5500DCNC** with machine torch: 20–55 A on 220/240 V, 20–35 A on 110/120 V, non-HF blowback pilot arc, a CNC torch-start interface, and a separate **1:1 raw arc-voltage/THC output**. It is the baseline production candidate because it previously ran on the JD's Garage table and already provides the core machine-facing functions X-1 needs. The raw-voltage output requires a properly engineered isolated high-voltage divider or THCAD interface. Arc OK availability and pinout must be verified on this exact unit rather than assumed.
+- **LOTOS LTP5500DCNC** with a **PlasmaDyn iPT60 / PTM-60 CNC machine torch**: 20–55 A on 220/240 V, non-HF blowback pilot arc, a CNC torch-start interface, and a separate 1:1 raw arc-voltage/THC output. The iPT60/PT60 consumable family includes low-amperage nozzle options suitable for controlled 10–18 gauge testing. This is the baseline production candidate because it previously ran on the JD's Garage table and already provides the core machine-facing functions X-1 needs. The raw-voltage output requires a properly engineered isolated high-voltage divider or THCAD interface. Arc OK availability and pinout must be verified on this exact unit rather than assumed.
 - **Everlast PowerPlasma 82i** with machine torch: retained as the higher-amperage development and comparison source.
 
 Neither source is declared production-ready until controlled 10–18 gauge coupon testing establishes kerf, dross, angularity, pierce consistency, small-feature behavior, consumable life, and repeatability.
@@ -78,7 +78,7 @@ Immediate work:
 2. Select exact profile rails and bearing blocks.
 3. Select X and Y ball-screw diameter, lead, length, supports, and nuts.
 4. Select closed-loop steppers or AC servos.
-5. Bench-test the LOTOS and Everlast source/torch/consumable packages across 10–18 gauge and select the production process.
+5. Bench-test the LOTOS/PlasmaDyn and Everlast source/torch/consumable packages across 10–18 gauge and select the production process.
 6. Select LinuxCNC/QtPlasmaC motion and isolated THC hardware.
 7. Design the one-piece water pan, floating touch-off Z, and torch breakaway.
 8. Build the Rev B SolidWorks assembly and validation plan.
@@ -91,6 +91,7 @@ Read in this order:
 2. [`docs/DECISION_LOG.md`](docs/DECISION_LOG.md)
 3. [`docs/REQUIREMENTS.md`](docs/REQUIREMENTS.md)
 4. [`docs/CUT_QUALITY_TARGETS.md`](docs/CUT_QUALITY_TARGETS.md)
-5. [`docs/PROJECT_RULES.md`](docs/PROJECT_RULES.md)
-6. [`docs/THC_ARCHITECTURE.md`](docs/THC_ARCHITECTURE.md)
-7. original reference material
+5. [`docs/PLASMA_SOURCE_BASELINE.md`](docs/PLASMA_SOURCE_BASELINE.md)
+6. [`docs/PROJECT_RULES.md`](docs/PROJECT_RULES.md)
+7. [`docs/THC_ARCHITECTURE.md`](docs/THC_ARCHITECTURE.md)
+8. original reference material
