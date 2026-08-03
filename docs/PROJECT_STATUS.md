@@ -1,88 +1,86 @@
 # X-1 Project Status
 
-**Status date:** 2026-08-02  
-**Active phase:** Phase 1 — Architecture and Component Freeze  
+**Status date:** 2026-08-03  
+**Active phase:** Phase 1 — CrossFire PRO Mechanical Reconstruction  
 **Project owner:** Chris Hilton  
-**Primary objective:** Freeze a buildable, affordable compact half-sheet X-1 architecture without drifting into unnecessary machine length or unrelated platforms.
+**Primary objective:** Reconstruct a mechanically faithful standard CrossFire PRO frame and motion system, then operate it with Jackpot/FluidNC, X-1 Control, and X-1 THC.
 
 ## Current baseline
 
-- Project name: X-1 — Laser X Design 1
-- Machine type: CNC plasma table
-- Sheet-support area: approximately 50 × 50 inches clear, allowing a 48 × 48 inch half-sheet to load with about 1 inch clearance on every side
-- Cutting envelope: open and expected to be smaller than the support area; finalized from actual carriage, guide, screw, torch-offset, limit, and overtravel geometry
-- Extra length: not required; the existing large laser handles long work
-- Frame: welded 1/8-inch-wall steel tube
-- Guides: purchased linear guides with metal carriages
-- Main-axis drive: ball screws selected for X, Y-left, and Y-right
-- Main-axis screw diameter baseline: 16 mm nominal, approximately 5/8 inch
-- Gantry: independent Y-left and Y-right drives with automatic squaring
+- Mechanical authority: standard CrossFire PRO, not PRO MAX
+- Published cutting envelope: 48.25 in X × 33.3 in Y
+- Published floor space: approximately 54.2 in × 69.5 in
+- Frame: structural steel tube, stanchions, gussets, skirts, water tray, and slat bed patterned after PRO
+- Guidance: adjustable ball-bearing carriages on zinc-plated tube rails
+- X drive: 1/2-10, 5-start ACME lead screw, acetal anti-backlash nut
+- Y drives: two 3/8-8, 4-start ACME lead screws, acetal anti-backlash nuts
+- Main-axis advance: 0.5 inch per revolution on X and Y
+- Screw support: motor coupler at drive end, 608 bearing at opposite end
+- Main motors: three NEMA 23 motors, 284 oz-in equivalent
+- Z: powered floating head/IHS architecture, NEMA 23, 180 oz-in equivalent
 - Controller: V1 Engineering Jackpot CNC Controller V1.2.1
-- Firmware: FluidNC
-- Operator interface: dedicated X-1 Windows machine software
+- Firmware: FluidNC or controlled X-1 fork
+- Operator software: dedicated X-1 Windows application
 - Plasma source: Everlast PowerPlasma 82i
-- THC: required; architecture open and active
+- THC: required; X-1 implementation, not LS-THC
+
+## Excluded Langmuir systems
+
+- Langmuir control electronics
+- FireControl
+- Langmuir computer/touchscreen
+- OEM wiring enclosure internals
+- LS-THC and Langmuir voltage interface
 
 ## Current active issues
 
-1. **#5 — Inventory on-hand controls, motors, drives, and power supplies**
-2. **#3 — Select X and Y linear guides and standard lengths**
-3. **#4 — Choose actual ball-screw components and verify usable travel/speed**
-4. **#8 — Select and design the required THC architecture**
-5. **#9 — Build dedicated X-1 operator software**
-
-Issue #9 is limited during this phase to communication proof, state handling, architecture, and requirements. Full application development waits for machine signals and operating sequences to be frozen.
+1. **#3 — Reconstruct CrossFire PRO tube rails and carriages**
+2. **#4 — Source CrossFire PRO-equivalent ACME screws, nuts, bearings, couplers, and motors**
+3. **#5 — Inventory reusable controls, motors, drives, and power supplies**
+4. **#8 — Select and design the required X-1 THC architecture**
+5. **#9 — Prove X-1 Control communication and state handling**
 
 ## Blocked work
 
-- **#6 — Rev B SolidWorks assembly and manufacturing package** is blocked by guide, screw package, motor/driver, Z, travel, and THC-interface selections.
-- **#7 — Final FluidNC configuration** is blocked by motor/driver selection, travel, pin mapping, switch arrangement, and selected THC boundary.
-- Final BOM and purchase package are blocked by exact component selection.
-- Released wiring diagrams are blocked by the final I/O map and plasma/THC architecture.
+- **#6 — Rev B SolidWorks and manufacturing package** is blocked by missing frame, rail, carriage, gantry, mount, water-tray, and Z manufacturing dimensions.
+- **#7 — Final FluidNC configuration** is blocked by final motor assignment, I/O map, homing strategy, Z/IHS details, and THC boundary.
+- Final purchase BOM is blocked by exact screw lengths, end machining, nut patterns, bearing mounts, couplers, motors, and bearings.
 
 ## Immediate next actions
 
-1. Photograph and identify all reusable motion and control hardware.
-2. Collect exact listings and drawings for guide candidates sized around the approximately 50 × 50 inch support bed.
-3. Collect exact listings and drawings for 16 mm ball-screw packages.
-4. Compare likely screw lengths around 1400–1500 mm and calculate actual usable stroke from end machining, bearing supports, nut length, coupler, and limit allowance.
-5. Compare 1605 and 1610 or other available leads using actual root diameter, bearing span, critical-speed limit, desired cutting speed, and desired rapid speed.
-6. Calculate complete delivered cost for two Y screws and one X screw; treat Z separately.
-7. Document the installed Jackpot and FluidNC versions and available I/O.
-8. Evaluate the viable THC paths in `THC_ARCHITECTURE.md` and select one.
-9. Prove basic FluidNC communication from the future X-1 operator software stack.
+1. Build the source-evidence table in `docs/CROSSFIRE_PRO_MECHANICAL_BASELINE.md`.
+2. Source exact-equivalent 3/8-8 4-start and 1/2-10 5-start ACME screws and acetal anti-backlash nuts.
+3. Determine exact screw lengths and turned/tapped end geometry.
+4. Reconstruct the overall frame from the published footprint, cutting envelope, water-pan dimensions, guide images, and assembly relationships.
+5. Reconstruct Y stanchions, tube rails, carriage weldments, bearing blocks, gantry tube, X carriage, and screw mounts.
+6. Reconstruct the floating Z and IHS mechanism.
+7. Mark every dimension as published, measured, derived, or inferred.
+8. Create the first full SolidWorks envelope model and verify the published cutting area.
+9. Integrate Jackpot/FluidNC and X-1 THC boundaries without changing the mechanical envelope unless required.
 
 ## Phase 1 exit criteria
 
-Phase 1 is complete only when all of the following are true:
-
-- exact X and Y guide packages selected;
-- exact X, Y-left, and Y-right ball-screw packages selected;
-- exact Z guide and drive selected;
-- motors and driver strategy selected;
-- the table provides approximately 50 × 50 inches of clear sheet-support area;
-- usable X/Y/Z travel calculated and the final compact cut envelope frozen;
-- ball-screw critical speed and target cut/rapid speeds verified;
-- Jackpot and FluidNC I/O requirements verified;
-- required THC architecture selected with defined hardware and firmware boundaries;
-- X-1 operator-software communication path proven;
-- selected components have verified drawings or physical measurements;
-- decision log and requirements updated;
-- no dimension-critical or control-critical `TBD` blocks the Rev B assembly.
+- exact screw series, lengths, end machining, nuts, bearings, couplers, and motors selected;
+- frame tube sections, cut lengths, and hole patterns reconstructed;
+- rail/stanchion/carriage geometry reconstructed;
+- gantry/X-carriage geometry reconstructed;
+- water tray, drains, slats, and holders reconstructed;
+- Z/IHS geometry reconstructed;
+- SolidWorks assembly reproduces 48.25 in × 33.3 in cutting envelope and approximately 54.2 in × 69.5 in floor space;
+- every critical dimension has evidence classification;
+- decision log and requirements are current;
+- no unlabeled inferred geometry remains in released manufacturing drawings.
 
 ## Current exclusions
 
 Do not expand active work into:
 
-- fiber lasers;
+- PRO MAX geometry or 4 × 4 expansion;
+- profile linear rails or ball screws unless the replica architecture fails a documented requirement;
 - Mesa/LinuxCNC/EtherCAT migration without a documented FluidNC failure;
-- rotary axes;
-- 4 × 5, 4 × 6, or 4 × 8 expansion outside the locked compact half-sheet requirement;
-- nesting, quoting, cloud, mobile, AI, or commercial-product features;
-- cosmetic detail design before the core machine envelope and guards are established.
-
-Record those ideas in `PARKING_LOT.md` and return to the active issue.
+- fiber laser, rotary axis, nesting, quoting, cloud, mobile, AI, or commercial packaging;
+- cosmetic redesign before the mechanical clone is dimensionally closed.
 
 ## Update rule
 
-Update this file whenever the active phase, immediate priority, major blocker, or phase gate changes. Do not use old chat summaries as the project baseline when this file has newer information.
+Update this file whenever the active phase, immediate priority, major blocker, or replica boundary changes. The current repository status overrides older chat summaries and superseded concepts.
