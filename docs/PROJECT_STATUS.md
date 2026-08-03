@@ -19,10 +19,10 @@
 - Tube-running rolling carriages: excluded
 - Gantry: independent Y-left/Y-right drive and automatic squaring
 - Z: powered precision slide with mandatory floating touch-off and separate breakaway
-- Baseline plasma candidate: on-hand LOTOS APEX LTP6300DCNC with machine torch, non-HF blowback start, CNC torch input, Arc OK, and 1:1 raw arc-voltage output
+- Baseline plasma candidate: on-hand LOTOS LTP5500DCNC with machine torch, 20–55 A on 220/240 V, non-HF blowback start, CNC torch-start interface, and 1:1 raw arc-voltage/THC output
 - Comparison plasma source: on-hand Everlast PowerPlasma 82i with machine torch
 - Production source/torch/consumables: open pending controlled 10–18 gauge cut tests
-- THC: mandatory closed-loop arc-voltage THC; LOTOS raw voltage requires a properly engineered isolated high-voltage divider/THCAD interface
+- THC: mandatory closed-loop arc-voltage THC; LOTOS raw voltage requires a properly engineered isolated high-voltage divider/THCAD interface; Arc OK availability must be verified on this exact unit
 - Preferred control direction: LinuxCNC + QtPlasmaC with deterministic Ethernet motion and isolated arc-voltage interface
 - FluidNC/Jackpot: retained only as a candidate pending documented requirement testing
 - Operator interface: complete plasma-machine interface; generic G-code sender alone is not acceptable
@@ -74,8 +74,8 @@ Do not copy:
 4. Build candidate ball-screw calculations for X and Y using actual bearing span, root diameter, support arrangement, RPM, torque, and inertia.
 5. Compare closed-loop NEMA 23/24 drives against 400 W-class AC servos.
 6. Identify the exact LOTOS machine torch and every available low-amperage nozzle/electrode/shield combination.
-7. Verify the LOTOS CNC interfaces: torch-start contacts, Arc OK contact type, and loaded 1:1 raw arc-voltage behavior.
-8. Bench-test both the LOTOS LTP6300DCNC and Everlast PowerPlasma 82i on controlled 10, 12, 14, 16, and 18 gauge coupons.
+7. Verify the LOTOS CNC interface on the exact unit: torch-start contact requirements and pinout, raw-voltage polarity/loading, and whether a separate Arc OK contact is present.
+8. Bench-test both the LOTOS LTP5500DCNC and Everlast PowerPlasma 82i on controlled 10, 12, 14, 16, and 18 gauge coupons.
 9. Compare the better on-hand result against at least one mechanized fine-cut plasma process before declaring the production source.
 10. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting cost and availability.
 11. Design the one-piece pan and rail-support structure so final rail alignment occurs after welding.
