@@ -1,86 +1,98 @@
 # X-1 Project Status
 
 **Status date:** 2026-08-03  
-**Active phase:** Phase 1 — CrossFire PRO Mechanical Reconstruction  
+**Active phase:** Phase 1 — Precision Motion and Plasma Architecture Freeze  
 **Project owner:** Chris Hilton  
-**Primary objective:** Reconstruct a mechanically faithful standard CrossFire PRO frame and motion system, then operate it with Jackpot/FluidNC, X-1 Control, and X-1 THC.
+**Primary objective:** Freeze a compact precision-sign-cutter architecture for intricate 16-gauge and 18-gauge work without drifting back into a low-cost CrossFire clone or duplicating the existing large plasma table.
 
 ## Current baseline
 
-- Mechanical authority: standard CrossFire PRO, not PRO MAX
-- Published cutting envelope: 48.25 in X × 33.3 in Y
-- Published floor space: approximately 54.2 in × 69.5 in
-- Frame: structural steel tube, stanchions, gussets, skirts, water tray, and slat bed patterned after PRO
-- Guidance: adjustable ball-bearing carriages on zinc-plated tube rails
-- X drive: 1/2-10, 5-start ACME lead screw, acetal anti-backlash nut
-- Y drives: two 3/8-8, 4-start ACME lead screws, acetal anti-backlash nuts
-- Main-axis advance: 0.5 inch per revolution on X and Y
-- Screw support: motor coupler at drive end, 608 bearing at opposite end
-- Main motors: three NEMA 23 motors, 284 oz-in equivalent
-- Z: powered floating head/IHS architecture, NEMA 23, 180 oz-in equivalent
-- Controller: V1 Engineering Jackpot CNC Controller V1.2.1
-- Firmware: FluidNC or controlled X-1 fork
-- Operator software: dedicated X-1 Windows application
+- Mission: intricate signs, delicate profiles, small holes/arcs, and repeatable thin-sheet cutting
+- Structure: available 1/8-inch-wall tube with laser-cut/formable metal parts
+- Water bed: one-piece welded pan, designed so welding distortion does not alter rail alignment
+- Guidance: profile linear rails on X and both Y sides
+- Main-axis drive: recirculating ball screws on X, Y-left, and Y-right
+- Main-axis ACME screws: excluded
+- Tube-running rolling carriages: excluded
+- Gantry: independent Y-left/Y-right drive and automatic squaring
+- Z: powered precision slide with mandatory floating touch-off and separate breakaway
 - Plasma source: Everlast PowerPlasma 82i
-- THC: required; X-1 implementation, not LS-THC
+- THC: mandatory closed-loop arc-voltage THC
+- Preferred control direction: LinuxCNC + QtPlasmaC with deterministic Ethernet motion and isolated arc-voltage interface
+- FluidNC/Jackpot: retained only as a candidate pending documented requirement testing
+- Operator interface: complete plasma-machine interface; generic G-code sender alone is not acceptable
 
-## Excluded Langmuir systems
+## CrossFire PRO reference boundary
 
-- Langmuir control electronics
-- FireControl
-- Langmuir computer/touchscreen
-- OEM wiring enclosure internals
-- LS-THC and Langmuir voltage interface
+Keep as references:
+
+- compact table proportions and packaging;
+- dual-Y layout;
+- frame/leg/stanchion concepts;
+- one-piece water-bed adaptation;
+- slat system;
+- powered floating-head purpose;
+- assembly and alignment sequence.
+
+Do not copy:
+
+- ACME main-axis screws;
+- acetal anti-backlash nuts;
+- rolling bearings directly on tube rails;
+- Langmuir controls, FireControl, computer, or LS-THC.
+
+The assembly guide confirms the reference machine uses three lead screws, rolling tube carriages, NEMA 23 motors, and a floating IHS head. Those features explain the reference architecture but are not all suitable for the X-1 precision target.
 
 ## Current active issues
 
-1. **#3 — Reconstruct CrossFire PRO tube rails and carriages**
-2. **#4 — Source CrossFire PRO-equivalent ACME screws, nuts, bearings, couplers, and motors**
-3. **#5 — Inventory reusable controls, motors, drives, and power supplies**
-4. **#8 — Select and design the required X-1 THC architecture**
-5. **#9 — Prove X-1 Control communication and state handling**
-
-## Blocked work
-
-- **#6 — Rev B SolidWorks and manufacturing package** is blocked by missing frame, rail, carriage, gantry, mount, water-tray, and Z manufacturing dimensions.
-- **#7 — Final FluidNC configuration** is blocked by final motor assignment, I/O map, homing strategy, Z/IHS details, and THC boundary.
-- Final purchase BOM is blocked by exact screw lengths, end machining, nut patterns, bearing mounts, couplers, motors, and bearings.
+1. **#3 — Select exact profile rails, blocks, lengths, and mounting strategy**
+2. **#4 — Select exact ball screws, nuts, supports, couplers, motors, and drives**
+3. **#5 — Inventory reusable controls, motors, drives, power supplies, and enclosure hardware**
+4. **#8 — Select the closed-loop THC and isolated voltage architecture**
+5. **#9 — Select/validate the production operator and controller software stack**
+6. **#6 — Build the Rev B SolidWorks precision-machine assembly after components freeze**
 
 ## Immediate next actions
 
-1. Build the source-evidence table in `docs/CROSSFIRE_PRO_MECHANICAL_BASELINE.md`.
-2. Source exact-equivalent 3/8-8 4-start and 1/2-10 5-start ACME screws and acetal anti-backlash nuts.
-3. Determine exact screw lengths and turned/tapped end geometry.
-4. Reconstruct the overall frame from the published footprint, cutting envelope, water-pan dimensions, guide images, and assembly relationships.
-5. Reconstruct Y stanchions, tube rails, carriage weldments, bearing blocks, gantry tube, X carriage, and screw mounts.
-6. Reconstruct the floating Z and IHS mechanism.
-7. Mark every dimension as published, measured, derived, or inferred.
-8. Create the first full SolidWorks envelope model and verify the published cutting area.
-9. Integrate Jackpot/FluidNC and X-1 THC boundaries without changing the mechanical envelope unless required.
+1. Freeze the practical material-support target and desired cut envelope.
+2. Set target thin-sheet cut speed, rapid speed, acceleration, and contouring requirements.
+3. Select Y profile-rail candidates and X profile-rail candidates from exact drawings.
+4. Build candidate ball-screw calculations for:
+   - X: 16 mm and 20 mm diameter; 10 mm and higher leads;
+   - Y-left/Y-right: 16 mm and 20 mm diameter; 10 mm and higher leads;
+   - fixed-supported and fixed-fixed support arrangements.
+5. Calculate actual bearing span, root diameter, 80%-critical-speed operating ceiling, maximum linear speed, motor RPM, torque, and screw inertia.
+6. Compare closed-loop NEMA 23/24 drives against 400 W-class AC servos.
+7. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting the cost and availability.
+8. Design the one-piece pan and rail-support structure so final rail alignment happens after welding.
+9. Design the Z floating touch-off and breakaway system.
+10. Create the first precision-motion SolidWorks envelope and collision study.
 
 ## Phase 1 exit criteria
 
-- exact screw series, lengths, end machining, nuts, bearings, couplers, and motors selected;
-- frame tube sections, cut lengths, and hole patterns reconstructed;
-- rail/stanchion/carriage geometry reconstructed;
-- gantry/X-carriage geometry reconstructed;
-- water tray, drains, slats, and holders reconstructed;
-- Z/IHS geometry reconstructed;
-- SolidWorks assembly reproduces 48.25 in × 33.3 in cutting envelope and approximately 54.2 in × 69.5 in floor space;
-- every critical dimension has evidence classification;
-- decision log and requirements are current;
-- no unlabeled inferred geometry remains in released manufacturing drawings.
+- machine mission and material/cut envelope frozen;
+- exact X/Y profile rails and blocks selected;
+- exact X/Y ball screws, nuts, supports, and couplers selected;
+- critical-speed, linear-speed, torque, acceleration, and resolution calculations completed;
+- motors and drives selected;
+- Z guide, screw, floating mechanism, touch-off switch, and breakaway selected;
+- one-piece pan/frame/rail-mount architecture frozen;
+- controller, operator interface, I/O, Arc OK, voltage input, and THC architecture selected;
+- selected components have verified drawings or physical measurements;
+- decision log and requirements current;
+- Rev B assembly can be modeled without dimension-critical or control-critical guesses.
 
 ## Current exclusions
 
 Do not expand active work into:
 
-- PRO MAX geometry or 4 × 4 expansion;
-- profile linear rails or ball screws unless the replica architecture fails a documented requirement;
-- Mesa/LinuxCNC/EtherCAT migration without a documented FluidNC failure;
+- an exact CrossFire PRO replica;
+- ACME or trapezoidal main-axis screws;
+- tube-running rolling carriages;
+- 4 × 8 expansion or attempts to replace the existing large plasma table;
 - fiber laser, rotary axis, nesting, quoting, cloud, mobile, AI, or commercial packaging;
-- cosmetic redesign before the mechanical clone is dimensionally closed.
+- custom operator software that merely duplicates mature QtPlasmaC functions before the machine architecture is frozen.
 
 ## Update rule
 
-Update this file whenever the active phase, immediate priority, major blocker, or replica boundary changes. The current repository status overrides older chat summaries and superseded concepts.
+Update this file whenever the active phase, immediate priority, major blocker, or architecture boundary changes. The current repository status overrides older chat summaries and superseded concepts.

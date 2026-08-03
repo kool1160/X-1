@@ -1,103 +1,136 @@
 # X-1 Design Requirements
 
-## 1. Mechanical replica target
+## 1. Machine mission
 
-- X-1 shall reproduce the standard CrossFire PRO mechanical architecture rather than the PRO MAX or the earlier custom 50 × 50 concept.
-- Published target cutting envelope: **48.25 in X × 33.3 in Y**.
-- Published target floor space: approximately **54.2 in × 69.5 in**.
-- The machine shall support/pass a full 4-foot-wide sheet in the same manner as the CrossFire PRO.
-- The final released assembly shall reproduce the published work envelope without carriage, nut, coupler, bearing, cable, or hard-stop interference.
-- Any deviation required for Jackpot, FluidNC, X-1 Control, or X-1 THC shall be limited to controls, wiring, enclosure, and interface hardware unless a mechanical interference is documented.
+- X-1 shall be a compact CNC plasma machine optimized for intricate 16-gauge and 18-gauge signs, delicate profiles, small interior features, clean corners, and repeatable thin-sheet cutting.
+- X-1 is not intended to replace the existing large CNC plasma table. Compactness and precision take priority over maximum sheet length.
+- The CrossFire PRO assembly guide remains a packaging and assembly reference only. X-1 shall not copy motion components that conflict with the precision objective.
 
-## 2. Frame and water table
+## 2. Frame and one-piece water bed
 
-- Reproduce the CrossFire PRO lower tube frame, four legs, lower rails, cross tubes, stanchion layout, gussets, side skirts, and leveling-foot arrangement.
-- Use available steel of equal or greater section strength while preserving the verified external geometry and mounting relationships.
-- Reproduce the two-piece stainless water-table arrangement or a one-piece welded tray with the same verified internal and external dimensions.
-- Water-table, drains, slat holders, and slats shall reproduce the verified PRO layout.
-- The water tray and material load shall not distort the motion rails.
-- Frame squareness and Y-rail parallelism shall be adjusted to at least the assembly-guide requirement of **1/32 inch**.
+- Main structure shall use available 1/8-inch-wall steel tube wherever practical.
+- The machine shall use a one-piece welded water pan with welded drains and replaceable slat holders.
+- Pan welding and support shall not distort the precision rail mounting surfaces. Rail pads shall be isolated, bolted, shimmed, machined, epoxy-leveled, or otherwise adjustable after welding.
+- The motion frame shall be measured for diagonal equality, twist, and rail-pad straightness after all structural and pan welding is complete.
+- Exterior guards and cosmetic panels shall be removable and nonstructural.
 
-## 3. Linear guidance
+## 3. Precision linear guidance
 
-- Y guidance shall use zinc-plated steel tube rails and adjustable rolling ball-bearing carriages patterned after the CrossFire PRO.
-- Each Y side shall use the same fixed/adjustable bearing arrangement and preload method as the reference machine unless an equivalent metal implementation is dimensionally documented.
-- X guidance shall use the CrossFire PRO gantry tube and rolling carriage architecture.
-- Bearings, eccentric adjusters, backing plates, fasteners, and preload access shall remain serviceable.
-- Rails and bearings shall be protected from direct slag, abrasive dust, and water splash without reducing the verified travel.
+- X and both Y sides shall use purchased profile linear guides with metal bearing blocks.
+- Structural rolling bearings directly on square or round tube are not permitted.
+- Each Y side shall use at least two bearing blocks with sufficient spacing to resist pitch, yaw, and gantry torsion.
+- X shall use a rail/block arrangement stiff enough to resist Z-axis cantilever and torch-lead forces without carriage rocking.
+- Exact guide size, preload, block style, and rail length shall be selected from verified manufacturer drawings or measurements.
+- Rails and blocks shall be guarded from slag, abrasive dust, and water while remaining accessible for alignment and lubrication.
 
-## 4. Main-axis drive system
+## 4. Ball-screw drive system
 
-- The main axes shall use multi-start ACME lead screws, not ball screws.
-- Y-left and Y-right shall each use **3/8-8, 4-start ACME** screws with acetal anti-backlash nuts.
-- X shall use a **1/2-10, 5-start ACME** screw with an acetal anti-backlash nut.
-- Every main screw shall advance **0.5 inch per revolution**.
-- Each main screw shall use an OEM-equivalent turned motor journal, clamping motor coupler, and opposite-end 608 bearing support.
-- Lead-nut mounts shall allow the controlled float used during alignment, then lock after the carriage is squared.
-- Exact screw lengths, journal dimensions, tapped-end details, coupler bores, and nut-mount hole patterns shall be verified before purchase or release.
-- The released drive system shall support the published 300 ipm maximum cut-speed capability or document a tested equivalent.
+- X, Y-left, and Y-right shall use recirculating ball screws. ACME or trapezoidal main-axis screws are not permitted.
+- Ball nuts shall be preloaded or otherwise verified to have sufficiently low backlash for the machine objective.
+- Screw diameter and lead shall be selected separately for X and Y when that improves speed, moving mass, cost, or critical-speed margin.
+- The longer X screw may be larger in diameter or higher in lead than the shorter Y screws.
+- Candidate sizes shall include 16 mm and 20 mm nominal diameters with 10 mm or higher leads where appropriate.
+- Every candidate shall be evaluated using actual root diameter, unsupported bearing span, support arrangement, motor speed, target cut speed, rapid speed, acceleration, torque, and nut speed limit.
+- Fixed-fixed bearing support is preferred for maximum critical-speed margin when alignment and cost permit. Fixed-supported may be accepted only after calculation and testing.
+- Screw guards shall protect ball tracks and nuts from plasma dust, water, and slag.
+- Couplers, supports, motors, nuts, and lubrication points shall be serviceable without removing the water pan.
 
-## 5. Motors and Z axis
+## 5. Motion performance
 
-- X, Y-left, and Y-right shall use NEMA 23 motors equivalent to the published **284 oz-in** specification.
-- Z shall use a NEMA 23 motor equivalent to the published **180 oz-in** specification.
-- Z shall reproduce the powered floating-head and initial-height-sensing functions of the CrossFire PRO.
-- Target Z capability is the published **2.75 inches powered travel plus 3 inches manual adjustment**.
-- The Z slide, torch mount, IHS switch, floating travel, and cable-strain-relief geometry shall be reconstructed and verified.
-- The Z screw specification may differ from the main axes but shall be documented and serviceable.
+The final targets will be frozen after the plasma cut-speed range and mechanical envelope are verified, but the design shall prioritize:
 
-## 6. Controls boundary
+- smooth contouring at thin-sheet cutting speeds;
+- minimal measurable backlash and reversal error;
+- high enough acceleration to preserve small-feature geometry;
+- repeatable diagonal and circular interpolation;
+- no lost position during direction changes or THC correction;
+- stable motion at programmed velocity without screw whip or resonance;
+- conservative operating speed below the selected screw manufacturer’s critical-speed recommendation.
 
-- Langmuir electronics, FireControl, and Langmuir computer hardware are excluded.
-- Baseline controller is the V1 Engineering Jackpot CNC Controller V1.2.1.
-- Baseline firmware is FluidNC or a controlled X-1 FluidNC fork required to meet locked requirements.
+Validation shall include:
+
+- backlash and bidirectional repeatability tests;
+- commanded-versus-measured travel calibration;
+- circle, square, diagonal, and small-hole tests;
+- full-speed dry contour tests;
+- contour error testing through repeated reversals;
+- live cutting tests in representative 16-gauge and 18-gauge material.
+
+## 6. Motors and drives
+
 - X, Y-left, Y-right, and Z require independent motor channels.
-- The configuration and any X-1 firmware changes shall be stored in this repository.
-- Separate left/right Y homing or a documented squaring procedure shall reproduce reliable gantry square.
-- Hardware safety shall not depend solely on the Windows application.
+- Closed-loop NEMA 23/24 stepper systems are the value baseline.
+- 400 W-class AC servos are the preferred no-compromise option if delivered cost and tuning complexity are acceptable.
+- Open-loop plug-in stepper modules are not the preferred production drive for the precision machine.
+- Motor and drive selection shall consider rotor inertia, screw inertia, desired acceleration, maximum RPM, supply voltage, encoder resolution, and fault reporting.
+- Separate Y homing switches shall support automatic gantry squaring.
 
-## 7. Operator software
+## 7. Z axis, floating touch-off, and breakaway
 
-- The finished machine shall use dedicated **X-1 Control** software, not FireControl, a generic G-code sender, or only the stock FluidNC WebUI.
-- FluidNC shall own embedded motion, stepping, limits, homing, probing inputs, local job execution, and controller-side THC functions.
-- X-1 Control shall provide machine setup, jogging, job import/preview/validation, work offsets, trace, dry run, run/hold/resume/stop, alarms, logs, material profiles, recovery, diagnostics, and THC controls/status.
+- Z shall use a compact precision linear guide and a ball screw or equivalent low-backlash powered drive.
+- A floating touch-off head is mandatory.
+- The floating mechanism shall provide repeatable switch travel, measurable offset, mechanical overtravel, and a normally closed industrial switch or equivalent fail-detecting input.
+- A separate torch breakaway is required and shall stop motion/torch operation on activation.
+- Ohmic sensing may be added as the primary probe, but the floating head shall remain as the mechanical fallback.
+- Torch cable routing shall not lift or preload the floating slide anywhere in the work envelope.
 
-## 8. Plasma interface
+## 8. Plasma control and operator interface
+
+- The controller shall be selected by the complete precision-plasma requirements, not merely by hardware already on hand.
+- The leading architecture is LinuxCNC with QtPlasmaC and deterministic Ethernet motion hardware.
+- A FluidNC/Jackpot solution is acceptable only if controlled testing proves all required plasma functions without building a fragile parallel control stack.
+- The normal operator interface shall provide homing, dual-Y squaring, jogging, work offsets, G-code preview, framing/perimeter trace, dry run, material profiles, probing, pierce/cut height, run/hold/resume/stop, cut recovery, alarms, and diagnostics.
+- A generic G-code sender alone is not acceptable.
+
+## 9. Plasma interface
 
 - Torch start shall use verified isolated dry contacts.
-- Arc OK shall enter only through a verified isolated interface.
-- The Everlast divided-voltage output shall never connect directly to Jackpot or ESP32 GPIO.
-- DV polarity, physical divider ratio, loaded behavior, and maximum expected output shall be verified.
-- The meter-induced voltage-reading change observed on the existing table shall be reproduced and explained before X-1 voltage-interface approval.
+- Arc OK shall enter through a verified isolated input.
+- The Everlast divided-voltage output shall never connect directly to controller GPIO.
+- DV polarity, divider ratio, loaded behavior, isolation, maximum expected output, scaling, and noise shall be verified before connection.
+- The meter-induced voltage-reading change observed on the existing table shall be reproduced and explained before approving the X-1 voltage interface.
+- No raw arc-voltage connection is permitted.
 
-## 9. Torch height control
+## 10. Torch height control
 
-- The completed X-1 shall include automatic closed-loop arc-voltage THC.
-- The THC architecture shall keep FluidNC Z position synchronized with all corrections.
-- It shall include Arc OK gating, stabilization delay, target-voltage control, deadband/control law, correction limits, corner/velocity anti-dive, cut-loss behavior, fault handling, and operator status/control.
-- Production release is blocked until THC is validated on representative warped material without torch dive or accumulated Z-position error.
+- Automatic closed-loop arc-voltage THC is mandatory for production release.
+- THC movement shall remain position-aware and synchronized with the motion controller.
+- Required functions include Arc OK gating, stabilization delay, target-voltage control, deadband or proportional correction law, correction-rate limits, Z travel limits, velocity/corner anti-dive, kerf/void behavior, cut-loss handling, and safe fault response.
+- THC shall stop safely on E-stop, reset, Arc OK loss, signal loss, implausible voltage, probe conflict, limit activation, or controller fault.
+- The operator shall be able to view live voltage, target voltage, THC enabled/active/inhibited state, anti-dive reason, correction state, and faults.
+- Production release is blocked until THC is validated on representative warped thin sheet without torch dive or accumulated Z-position error.
 
-## 10. Safety and serviceability
+## 11. Thin-sheet cut-quality controls
+
+- The software stack shall support reduced-velocity treatment for small holes and arcs.
+- Velocity anti-dive shall prevent THC from driving the torch downward during intentional deceleration, corners, holes, and tight contours.
+- CAM and machine settings shall support lead-in control, overcut where appropriate, pierce-delay control, kerf compensation, and cut sequencing suitable for delicate signs.
+- Cut-quality testing shall separate mechanical motion error, consumable condition, air quality, CAM strategy, torch timing, and THC behavior.
+
+## 12. Safety and serviceability
 
 - E-stop shall remove motion and torch-enable capability through hardware.
-- Motor couplers, lead nuts, bearings, switches, drains, and wiring terminations shall be accessible for adjustment and replacement.
-- Guards shall cover exposed screws and pinch points without preventing alignment or maintenance.
-- The electronics enclosure shall separate mains, motor power, controller, plasma interface, and low-level signals.
-- Grounding, bonding, strain relief, ventilation, fire control, and safe material handling are required.
+- Hardware safety shall not depend solely on a Windows or Linux application.
+- The enclosure shall separate mains, motor power, controller, plasma interface, and low-level signals.
+- Grounding, bonding, shielding, strain relief, ventilation, fire controls, and safe material handling are required.
+- Every rail, block, nut, support, motor, switch, relay, and interface board shall be replaceable and documented.
 
-## 11. Documentation and exactness
+## 13. Documentation and release gate
 
-The attached assembly guide is an assembly source, not a complete manufacturing drawing package. Rev B shall include:
+Rev B shall not be released until exact guides, blocks, ball screws, nuts, supports, motors, drives, Z components, and control hardware are selected from verified drawings or measurements.
 
-- source-evidence matrix identifying published, measured, derived, and inferred dimensions;
-- complete SolidWorks assembly with verified work envelope;
-- tube cut list and hole tables;
-- carriage, stanchion, gantry, mount, gusset, skirt, tray, slat-holder, and Z drawings;
-- ACME screw end-machining drawings and nut/coupler/bearing interfaces;
+Rev B must include:
+
+- final support area, cut envelope, and overall dimensions;
+- complete SolidWorks assembly and motion study;
+- tube cut list and frame drawings;
+- rail mounting and alignment details;
+- carriage, motor, nut, support, Z, pan, slat, guard, and enclosure drawings;
+- ball-screw critical-speed, torque, speed, acceleration, and resolution calculations;
 - released DXFs and PDFs;
-- mechanical BOM and supplier references;
-- wiring and I/O diagrams for Jackpot/FluidNC;
-- X-1 Control and THC interface specifications;
-- alignment, break-in, and commissioning checklist.
+- mechanical/electrical BOM;
+- wiring, grounding, and I/O diagrams;
+- controller, operator-interface, probing, and THC configuration;
+- alignment, calibration, and commissioning test records.
 
-No unverified hole pattern or hidden dimension may be labeled exact. Inferred dimensions must be clearly marked until validated against a physical machine, OEM drawing, or closed-loop assembly measurement.
+No unverified hole pattern, signal, or performance claim may be labeled released.
