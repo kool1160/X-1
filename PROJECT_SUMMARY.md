@@ -49,7 +49,12 @@ The quality target depends on more than the frame. X-1 must treat the complete c
 - material-specific cut charts and repeatable consumable setup;
 - a mature plasma-machine operator interface.
 
-The existing Everlast PowerPlasma 82i may be used for development and baseline testing. The production-quality source/torch/consumable package remains an active decision because motion quality alone cannot create a narrow, stable fine-cut arc.
+Two plasma sources are already on hand:
+
+- **LOTOS APEX LTP6300DCNC** with machine torch: 20–63 A on 220/240 V, non-HF blowback pilot arc, CNC torch-start input, Arc OK output, and a separate **1:1 raw arc-voltage output**. It is the baseline production candidate because it was previously used on the JD's Garage table and already provides the machine-facing signals X-1 needs. Its raw-voltage output still requires a properly engineered isolated high-voltage divider/THCAD interface.
+- **Everlast PowerPlasma 82i** with machine torch: retained as the higher-amperage development and comparison source.
+
+Neither source is declared production-ready until controlled 10–18 gauge coupon testing establishes kerf, dross, angularity, pierce consistency, small-feature behavior, consumable life, and repeatability.
 
 ## Current control direction
 
@@ -73,7 +78,7 @@ Immediate work:
 2. Select exact profile rails and bearing blocks.
 3. Select X and Y ball-screw diameter, lead, length, supports, and nuts.
 4. Select closed-loop steppers or AC servos.
-5. Select the production plasma source, torch, and fine-cut consumable strategy for 10–18 gauge.
+5. Bench-test the LOTOS and Everlast source/torch/consumable packages across 10–18 gauge and select the production process.
 6. Select LinuxCNC/QtPlasmaC motion and isolated THC hardware.
 7. Design the one-piece water pan, floating touch-off Z, and torch breakaway.
 8. Build the Rev B SolidWorks assembly and validation plan.
