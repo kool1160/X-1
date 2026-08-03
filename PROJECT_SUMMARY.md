@@ -8,8 +8,9 @@ X-1 is not a direct copy of the JD's Garage or Langmuir machines. Those files ar
 
 ## Current baseline
 
-- Minimum material width: 48 inches
-- Target Y cutting travel: approximately 60–72 inches, finalized from affordable standard component lengths
+- Material capacity: the table shall physically accept and support an untrimmed 48 × 48 inch half-sheet.
+- Cutting-envelope target: approximately 48 × 48 inches, with exact usable travel frozen from the selected guides and drive hardware.
+- Extra Y length is not a project goal. Long work is handled by the existing large laser, so the X-1 should remain compact and inexpensive.
 - Main frame: welded 1/8-inch-wall steel tube
 - Exterior appearance: removable laser-cut skins and guards around the tube structure
 - X/Y guidance: purchased linear guides with metal structural carriages
@@ -30,7 +31,7 @@ The project is selecting exact guides, drive components, motors/drivers, Z-axis 
 ## Active work, in order
 
 1. Inventory reusable controller, motors, drives, power supplies, switches, relays, and enclosure hardware.
-2. Select exact X and Y guide packages and rail lengths.
+2. Select exact X and Y guide packages that support the compact 48 × 48 target.
 3. Select the complete X/Y drive architecture and actual components.
 4. Select the Z-axis guide and drive.
 5. Select the required THC architecture, including voltage sensing, isolation, Z-control method, anti-dive behavior, and operator-software interface.
@@ -44,7 +45,7 @@ The following are deliberately deferred so the project does not drift:
 
 - controller migration to Mesa, LinuxCNC, EtherCAT, or another platform unless FluidNC fails a documented requirement;
 - fiber-laser development;
-- 4×8 expansion beyond the selected standard component tier;
+- 4×5, 4×6, or 4×8 expansion beyond the compact half-sheet target;
 - rotary-axis development;
 - full CAM, nesting, quoting, cloud, mobile, or AI features;
 - commercial production or sales packaging.
@@ -68,4 +69,4 @@ Read these in order:
 
 ## Phase 1 completion gate
 
-Phase 1 is complete only when exact guide, drive, motor/driver, and Z components are selected; a viable THC architecture is selected; verified drawings or physical measurements exist; usable travel and I/O needs are calculated; the decision log is updated; and the machine can be modeled without inventing dimension-critical or control-critical details.
+Phase 1 is complete only when exact guide, drive, motor/driver, and Z components are selected; a viable THC architecture is selected; verified drawings or physical measurements exist; the table supports a 48 × 48 sheet; usable cutting travel is calculated; the decision log is updated; and the machine can be modeled without inventing dimension-critical or control-critical details.
