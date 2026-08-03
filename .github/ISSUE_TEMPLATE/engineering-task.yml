@@ -1,0 +1,96 @@
+name: Engineering task
+description: Create a scoped X-1 research, decision, design, software, firmware, or test task
+title: "[SUBSYSTEM] "
+labels: []
+body:
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Active phase
+      description: Select the phase listed in docs/PROJECT_STATUS.md.
+      options:
+        - Phase 1 — Architecture and Component Freeze
+        - Scope-change request
+        - Parking-lot proposal
+    validations:
+      required: true
+
+  - type: dropdown
+    id: subsystem
+    attributes:
+      label: Subsystem
+      options:
+        - Project control/documentation
+        - Frame and water table
+        - Linear guides and carriages
+        - Drive system
+        - Motors and power
+        - Z axis and torch mount
+        - Plasma interface
+        - THC
+        - FluidNC/controller
+        - X-1 operator software
+        - Safety
+        - Testing and commissioning
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or required decision
+      description: State the exact problem. Do not combine unrelated work.
+    validations:
+      required: true
+
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Current baseline
+      description: Identify the current requirement, locked decision, drawing, configuration, or known-good condition.
+    validations:
+      required: true
+
+  - type: textarea
+    id: work
+    attributes:
+      label: Required work
+      description: List the measurements, research, calculations, design, code, or tests needed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence
+      description: Identify drawings, measurements, calculations, datasheets, logs, or tests required before acceptance.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Define exactly what must be true to close this issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and blockers
+      description: Link related issues and identify what cannot proceed until this is complete.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Scope checks
+      options:
+        - label: This work is in the active phase or explicitly requests a scope change.
+          required: true
+        - label: I reviewed docs/DECISION_LOG.md and docs/REQUIREMENTS.md.
+          required: true
+        - label: I identified assumptions and unverified dimensions/signals.
+          required: true
+        - label: This issue does not silently introduce a parked feature.
+          required: true
