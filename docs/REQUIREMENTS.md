@@ -14,7 +14,7 @@
 - The project shall not claim that conventional plasma equals fiber laser kerf width, heat-affected zone, minimum feature size, angularity, or absolute tolerance.
 - The machine shall eliminate avoidable motion, reversal, height-control, torch-timing, air-quality, consumable, and CAM errors so that the dominant remaining limitation is the plasma process.
 - Plasma source, torch, consumables, compressed-air quality, motion, probing, THC, CAM, and operator software shall be treated as one cut-quality system.
-- Source/torch selection shall remain open until tested cut samples prove whether the existing Everlast PowerPlasma 82i/IPT-80 system meets the required 10–18 gauge quality.
+- Source/torch selection shall remain open until tested cut samples compare the on-hand LOTOS LTP5500DCNC and Everlast PowerPlasma 82i and establish whether either system meets the required 10–18 gauge quality.
 
 ## 3. Frame and one-piece water bed
 
@@ -87,8 +87,10 @@ Validation shall include:
 ## 9. Plasma source, torch, consumables, and air
 
 - The production plasma source shall support stable mechanized cutting throughout the 10–18 gauge range.
-- Fine-detail capability shall be evaluated using the smallest manufacturer-approved mechanized nozzle or fine-cut process appropriate for each thickness.
-- The existing Everlast PowerPlasma 82i may be used for development, but it shall not be declared the final source until comparative cut tests establish acceptable kerf, dross, angularity, pierce consistency, and consumable repeatability.
+- Fine-detail capability shall be evaluated using the smallest manufacturer-approved or otherwise safely validated mechanized nozzle appropriate for each thickness.
+- The on-hand LOTOS LTP5500DCNC with machine torch is the baseline production candidate because it previously operated on a CNC table and provides CNC torch control plus a 1:1 raw arc-voltage output.
+- The on-hand Everlast PowerPlasma 82i remains the higher-amperage comparison source.
+- Neither source shall be declared final until comparative cut tests establish acceptable kerf, dross, angularity, pierce consistency, small-feature behavior, and consumable repeatability.
 - The design shall allow a later source upgrade without rebuilding the motion frame.
 - Compressed air shall be dry, clean, pressure-stable, and sized for the selected source. Final filtration, dryer, regulator, and pressure-monitoring requirements shall be documented.
 - Material profiles shall record source, torch, consumable part numbers, amperage, air pressure, pierce height, pierce delay, cut height, feed rate, kerf, arc voltage, and test results.
@@ -104,11 +106,14 @@ Validation shall include:
 ## 11. Plasma interface
 
 - Torch start shall use verified isolated dry contacts.
-- Arc OK shall enter through a verified isolated input.
-- The Everlast divided-voltage output shall never connect directly to controller GPIO.
-- Divider polarity, ratio, loaded behavior, isolation, maximum expected output, scaling, and noise shall be verified before connection.
-- The meter-induced voltage-reading change observed on the existing table shall be reproduced and explained before approving the X-1 voltage interface.
-- No raw arc-voltage connection is permitted.
+- Arc OK, when provided by the selected source, shall enter through a verified isolated input.
+- No plasma arc-voltage signal—raw or divided—shall connect directly to controller GPIO, a standard analog input, chassis ground, or the motion-control electronics.
+- The Everlast divided-voltage output may be used only after polarity, divider ratio, loading, isolation, scaling, maximum output, and noise behavior are verified.
+- The LOTOS LTP5500DCNC 1:1 raw arc-voltage output may be used only through a purpose-built galvanically isolated high-voltage measurement interface rated for the cutter’s open-circuit voltage, normal cutting voltage, expected transients, creepage, clearance, and input energy. A THCAD-class isolated interface or an equivalently documented circuit is required.
+- The raw-voltage interface shall include documented input impedance, protection, divider ratio, polarity, safe failure behavior, enclosure, connector, grounding boundary, and calibration procedure.
+- The exact LOTOS CNC connector pinout, raw-voltage polarity, loaded voltage, and any Arc OK output shall be verified on the physical unit before wiring.
+- The meter-induced voltage-reading change observed on the existing Everlast table shall be reproduced and explained before approving that source’s voltage interface.
+- Raw voltage is permitted only inside the approved isolated high-voltage measurement path. Exposed improvised taps, internal modifications without documented engineering controls, and direct low-voltage-controller connections are prohibited.
 
 ## 12. Torch height control
 
