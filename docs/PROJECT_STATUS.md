@@ -62,7 +62,7 @@ Do not copy:
 4. **#8 — Select the closed-loop THC and isolated voltage architecture**
 5. **#9 — Select/validate the production operator and controller software stack**
 6. **#6 — Build the Rev B SolidWorks precision-machine assembly after components freeze**
-7. **New process issue — Select and validate the production plasma source, machine torch, fine-cut consumables, air treatment, and 10–18 gauge cut charts**
+7. **#15 — Select the production plasma source, machine torch, fine-cut consumables, air treatment, and 10–18 gauge cut charts**
 
 ## Immediate next actions
 
