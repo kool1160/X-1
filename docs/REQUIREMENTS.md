@@ -1,11 +1,13 @@
 # X-1 Design Requirements
 
-## 1. Work envelope
+## 1. Material capacity and work envelope
 
-- Must accept material at least 48 inches wide.
-- Final Y travel must be calculated from the selected standard-length guide and drive components.
-- Target Y cutting travel is approximately 60-72 inches.
-- The torch must reach the full intended cut envelope without the trucks, ball nuts, belt clamps, rack pinions, cable chain, or limit targets reaching their physical limits.
+- The machine shall physically accept and support an untrimmed 48 × 48 inch half-sheet without cutting the stock down first.
+- The nominal cutting-envelope target is approximately 48 × 48 inches.
+- Exact usable X and Y travel shall be calculated from the selected standard-length guides and drive components.
+- Material support is a hard requirement. Extra travel beyond the half-sheet target is not required unless it is gained at negligible cost and does not materially increase the footprint, shipping cost, screw-whip risk, or complexity.
+- The existing large laser handles long work; X-1 shall not be enlarged to 4 × 5, 4 × 6, or 4 × 8 merely for additional length.
+- The torch must reach the intended cut envelope without the trucks, ball nuts, belt clamps, rack pinions, cable chain, or limit targets reaching their physical limits.
 - Provide intentional overtravel beyond software limits and hard stops that prevent a carriage from leaving its guides.
 
 ## 2. Structure
@@ -32,6 +34,7 @@
 - X/Y drive selection remains open among rack and pinion, timing belt, and ball screw.
 - The chosen system must support independent Y-left and Y-right drive channels.
 - Standard component lengths and replacement availability shall be considered before frame dimensions are frozen.
+- The drive comparison shall prioritize the shortest standard components that still provide the required 48 × 48 sheet support and target cutting travel.
 - Drive components shall be guarded while remaining accessible for tension, preload, lubrication, and replacement.
 - The drive system shall not depend on a proprietary controller.
 
@@ -101,7 +104,7 @@
 
 Rev B shall not be released until actual guide and drive components are selected and the THC architecture boundary is defined. Rev B must include:
 
-- final work envelope and overall dimensions;
+- final material-support area, work envelope, and overall dimensions;
 - tube cut list;
 - assembly model;
 - laser-cut DXFs and fabrication drawings;
