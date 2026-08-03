@@ -2,29 +2,50 @@
 
 **Laser X Design X-1 CNC Plasma Table**
 
-X-1 is a mechanically faithful replica of the **Langmuir CrossFire PRO frame and motion system**, paired with our own controls:
+X-1 is a compact precision plasma table designed to approach fiber-laser-like contour quality as closely as practical without fiber-laser cost.
 
-- Jackpot CNC controller
-- FluidNC or a controlled X-1 FluidNC fork
-- dedicated X-1 Windows operator software
-- isolated torch interface and required automatic THC
+It is optimized for:
 
-We are copying the machine's frame, tube-rail carriages, gantry, ACME lead-screw drive, water table, slat bed, and floating Z architecture. We are **not** using Langmuir electronics, FireControl, their computer, or LS-THC.
+- 10, 12, 14, 16, and 18 gauge mild steel;
+- intricate signs and decorative profiles;
+- smooth curves and crisp direction changes;
+- small holes and internal features within realistic plasma limits;
+- repeatable touch-off, cut height, and THC behavior;
+- low dross and minimal cleanup.
 
-## Verified mechanical baseline
+X-1 is not an exact CrossFire PRO replica and it does not replace the existing large plasma table. The CrossFire PRO guide remains a packaging and assembly reference only.
 
-- Cutting envelope: **48.25 in X × 33.3 in Y**
-- Floor space: approximately **54.2 in × 69.5 in**
-- X screw: **1/2-10, 5-start ACME**
-- Y screws: **two 3/8-8, 4-start ACME**
-- Screw advance: **0.5 in/revolution on every main axis**
-- Lead nuts: acetal anti-backlash
-- End support: 608 bearing
-- Main motors: NEMA 23, 284 oz-in
-- Z motor: NEMA 23, 180 oz-in
-- Guidance: adjustable ball-bearing carriages on zinc-plated steel tube rails
+## Locked mechanical direction
 
-These are lead screws, not ball screws.
+- welded tube structure using available 1/8-inch-wall material;
+- one-piece welded water pan;
+- profile linear rails on X and both Y sides;
+- recirculating ball screws on X, Y-left, and Y-right;
+- independent dual-Y homing and squaring;
+- closed-loop stepper or AC-servo drives;
+- precision powered Z;
+- floating touch-off head;
+- separate torch breakaway;
+- protected rails, screws, nuts, and lubrication points.
+
+ACME main-axis screws and bearings running directly on structural tube are excluded.
+
+## Plasma and control direction
+
+The finished cut quality depends on the torch and process as much as the machine motion. The production architecture must include:
+
+- a machine torch and consumable system suited to fine cutting;
+- dry, stable compressed air;
+- isolated torch start and Arc OK;
+- closed-loop arc-voltage THC;
+- velocity/corner anti-dive;
+- material profiles and cut charts;
+- small-hole velocity reduction and overcut support;
+- a complete plasma-machine operator interface.
+
+The current leading control architecture is **LinuxCNC + QtPlasmaC** with deterministic Ethernet motion hardware and an isolated arc-voltage interface.
+
+The existing Everlast PowerPlasma 82i may be used for development, but the final source/torch/consumable package remains open because motion accuracy cannot compensate for a wide or unstable plasma arc.
 
 ## Start here
 
@@ -32,43 +53,26 @@ These are lead screws, not ball screws.
 2. [Current project status](docs/PROJECT_STATUS.md)
 3. [Locked decisions](docs/DECISION_LOG.md)
 4. [Design requirements](docs/REQUIREMENTS.md)
-5. [CrossFire PRO mechanical baseline](docs/CROSSFIRE_PRO_MECHANICAL_BASELINE.md)
+5. [Cut-quality targets](docs/CUT_QUALITY_TARGETS.md)
 6. [Project rules](docs/PROJECT_RULES.md)
 7. [THC architecture](docs/THC_ARCHITECTURE.md)
-8. [Operator-software architecture](docs/OPERATOR_SOFTWARE.md)
 
 ## Current phase
 
-**Phase 1 — CrossFire PRO Mechanical Reconstruction**
+**Phase 1 — Precision Motion, Plasma Process, and Control Freeze**
 
-The assembly guide provides the correct part relationships, hardware, screw sizes, bearing arrangement, motor arrangement, and assembly sequence. It does not provide every manufacturing dimension. The active job is to reconstruct and verify:
-
-- tube cut lengths and hole locations
-- Y rail and stanchion geometry
-- rolling carriage plates and bearing positions
-- gantry tube and X carriage
-- motor, coupler, bearing, and lead-nut mounts
-- water tray and slat-holder geometry
-- floating Z dimensions and IHS mechanism
-
-No hole-for-hole manufacturing drawing will be labeled exact until it is supported by a verified measurement, published dimension, or validated assembly geometry.
+No Rev B manufacturing package will be released until the exact rails, ball screws, motors/drives, Z components, plasma source/torch/consumables, controller, I/O, and THC hardware are selected from verified drawings or measurements.
 
 ## Repository map
 
-- [`docs/`](docs/) — scope, status, requirements, decisions, architecture, and reconstruction notes
+- [`docs/`](docs/) — status, scope, requirements, decisions, process targets, and architecture
 - [`references/`](references/) — source index and usage rules
 - [`cad/`](cad/) — native SolidWorks models
 - [`drawings/`](drawings/) — released PDFs, DXFs, hole tables, and manufacturing outputs
-- [`bom/`](bom/) — motion-component research and released BOMs
-- [`firmware/fluidnc/`](firmware/fluidnc/) — Jackpot/FluidNC configuration and controlled firmware work
-- [`software/`](software/) — X-1 operator application
-- [`testing/`](testing/) — inspection, alignment, commissioning, and validation records
-
-## Primary reference
-
-- [CrossFire PRO Assembly Guide](CrossFire%20PRO%20Assembly%20Guide%20_%20Langmuir%20Systems.pdf)
-
-The PRO MAX and JD's Garage files remain secondary references only. The standard CrossFire PRO is now the mechanical authority for the X-1 replica.
+- [`bom/`](bom/) — component research and released BOMs
+- [`firmware/`](firmware/) — controller configuration and controlled firmware work
+- [`software/`](software/) — optional X-1 companion software where it adds value
+- [`testing/`](testing/) — motion, cut-quality, alignment, commissioning, and validation records
 
 ## Safety
 
