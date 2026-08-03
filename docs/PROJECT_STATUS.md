@@ -9,12 +9,13 @@
 
 - Project name: X-1 — Laser X Design 1
 - Machine type: CNC plasma table
-- Material capacity: physically accept and support an untrimmed 48 × 48 inch half-sheet
-- Cutting-envelope target: approximately 48 × 48 inches, finalized from selected standard components
+- Sheet-support area: approximately 50 × 50 inches clear, allowing a 48 × 48 inch half-sheet to load with about 1 inch clearance on every side
+- Cutting envelope: open and expected to be smaller than the support area; finalized from actual carriage, guide, screw, torch-offset, limit, and overtravel geometry
 - Extra length: not required; the existing large laser handles long work
 - Frame: welded 1/8-inch-wall steel tube
 - Guides: purchased linear guides with metal carriages
-- Drive: open decision among rack and pinion, timing belt, and ball screw
+- Main-axis drive: ball screws selected for X, Y-left, and Y-right
+- Main-axis screw diameter baseline: 16 mm nominal, approximately 5/8 inch
 - Gantry: independent Y-left and Y-right drives with automatic squaring
 - Controller: V1 Engineering Jackpot CNC Controller V1.2.1
 - Firmware: FluidNC
@@ -26,7 +27,7 @@
 
 1. **#5 — Inventory on-hand controls, motors, drives, and power supplies**
 2. **#3 — Select X and Y linear guides and standard lengths**
-3. **#4 — Choose X/Y drive architecture and actual components**
+3. **#4 — Choose actual ball-screw components and verify usable travel/speed**
 4. **#8 — Select and design the required THC architecture**
 5. **#9 — Build dedicated X-1 operator software**
 
@@ -34,7 +35,7 @@ Issue #9 is limited during this phase to communication proof, state handling, ar
 
 ## Blocked work
 
-- **#6 — Rev B SolidWorks assembly and manufacturing package** is blocked by guide, drive, motor/driver, Z, travel, and THC-interface selections.
+- **#6 — Rev B SolidWorks assembly and manufacturing package** is blocked by guide, screw package, motor/driver, Z, travel, and THC-interface selections.
 - **#7 — Final FluidNC configuration** is blocked by motor/driver selection, travel, pin mapping, switch arrangement, and selected THC boundary.
 - Final BOM and purchase package are blocked by exact component selection.
 - Released wiring diagrams are blocked by the final I/O map and plasma/THC architecture.
@@ -42,24 +43,26 @@ Issue #9 is limited during this phase to communication proof, state handling, ar
 ## Immediate next actions
 
 1. Photograph and identify all reusable motion and control hardware.
-2. Collect exact listings and drawings for guide candidates sized for the compact 48 × 48 target.
-3. Collect exact listings and drawings for serious rack, belt, and screw candidates.
-4. Compare three identical-length 1500 mm main-axis drive packages first; only consider longer Y hardware if 1500 mm cannot deliver the required support and usable travel.
-5. Calculate usable travel and complete delivered cost for each drive package.
-6. Document the installed Jackpot and FluidNC versions and available I/O.
-7. Evaluate the viable THC paths in `THC_ARCHITECTURE.md` and select one.
-8. Prove basic FluidNC communication from the future X-1 operator software stack.
+2. Collect exact listings and drawings for guide candidates sized around the approximately 50 × 50 inch support bed.
+3. Collect exact listings and drawings for 16 mm ball-screw packages.
+4. Compare likely screw lengths around 1400–1500 mm and calculate actual usable stroke from end machining, bearing supports, nut length, coupler, and limit allowance.
+5. Compare 1605 and 1610 or other available leads using actual root diameter, bearing span, critical-speed limit, desired cutting speed, and desired rapid speed.
+6. Calculate complete delivered cost for two Y screws and one X screw; treat Z separately.
+7. Document the installed Jackpot and FluidNC versions and available I/O.
+8. Evaluate the viable THC paths in `THC_ARCHITECTURE.md` and select one.
+9. Prove basic FluidNC communication from the future X-1 operator software stack.
 
 ## Phase 1 exit criteria
 
 Phase 1 is complete only when all of the following are true:
 
 - exact X and Y guide packages selected;
-- exact X/Y drive components selected;
+- exact X, Y-left, and Y-right ball-screw packages selected;
 - exact Z guide and drive selected;
 - motors and driver strategy selected;
-- the table support area accepts a 48 × 48 sheet;
-- usable X/Y/Z travel calculated and the final compact work envelope frozen;
+- the table provides approximately 50 × 50 inches of clear sheet-support area;
+- usable X/Y/Z travel calculated and the final compact cut envelope frozen;
+- ball-screw critical speed and target cut/rapid speeds verified;
 - Jackpot and FluidNC I/O requirements verified;
 - required THC architecture selected with defined hardware and firmware boundaries;
 - X-1 operator-software communication path proven;
