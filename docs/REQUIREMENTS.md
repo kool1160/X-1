@@ -2,12 +2,13 @@
 
 ## 1. Material capacity and work envelope
 
-- The machine shall physically accept and support an untrimmed 48 × 48 inch half-sheet without cutting the stock down first.
-- The nominal cutting-envelope target is approximately 48 × 48 inches.
-- Exact usable X and Y travel shall be calculated from the selected standard-length guides and drive components.
-- Material support is a hard requirement. Extra travel beyond the half-sheet target is not required unless it is gained at negligible cost and does not materially increase the footprint, shipping cost, screw-whip risk, or complexity.
+- The machine shall provide approximately 50 × 50 inches of clear sheet-support area so an untrimmed 48 × 48 inch half-sheet can be loaded with about 1 inch of clearance on every side.
+- Sheet-support size and cutting envelope are separate dimensions.
+- The cutting envelope is not required to equal 48 × 48 inches. Exact usable X and Y travel shall be calculated from the selected guides, carriages, drive components, torch centerline, limit clearance, and required overtravel.
+- Losing several inches of cut travel to the gantry trucks, X carriage, torch offset, or end clearances is acceptable when the table still holds the full half-sheet and the selected drive package remains economical.
+- Extra travel beyond the compact half-sheet requirement is not required unless it is gained at negligible cost and does not materially increase footprint, shipping cost, screw-whip risk, or complexity.
 - The existing large laser handles long work; X-1 shall not be enlarged to 4 × 5, 4 × 6, or 4 × 8 merely for additional length.
-- The torch must reach the intended cut envelope without the trucks, ball nuts, belt clamps, rack pinions, cable chain, or limit targets reaching their physical limits.
+- The torch must reach the final released cut envelope without the trucks, ball nuts, couplers, bearing supports, cable chain, or limit targets reaching their physical limits.
 - Provide intentional overtravel beyond software limits and hard stops that prevent a carriage from leaving its guides.
 
 ## 2. Structure
@@ -30,12 +31,17 @@
 
 ## 4. Drive system
 
+- X, Y-left, and Y-right shall use ball-screw drives unless later calculation or testing proves the selected arrangement cannot meet a locked requirement.
 - Guides and drives are separate systems; linear rails do not provide propulsion.
-- X/Y drive selection remains open among rack and pinion, timing belt, and ball screw.
-- The chosen system must support independent Y-left and Y-right drive channels.
+- The current main-axis diameter baseline is 16 mm nominal, approximately 5/8 inch.
+- A 12 mm, approximately 1/2-inch, screw is not the baseline because a roughly four-foot unsupported span reduces critical-speed and rapid-speed margin even though the axial load is light.
+- Exact screw lead, overall length, root diameter, end machining, support arrangement, ball nut, nut housing, coupling, and motor interface remain open until an actual package is selected.
+- The Y axis shall use independent left and right screws and motors.
 - Standard component lengths and replacement availability shall be considered before frame dimensions are frozen.
-- The drive comparison shall prioritize the shortest standard components that still provide the required 48 × 48 sheet support and target cutting travel.
-- Drive components shall be guarded while remaining accessible for tension, preload, lubrication, and replacement.
+- The drive comparison shall prioritize the shortest standard components that support the approximately 50 × 50 inch sheet bed and provide a useful calculated cut envelope.
+- Critical speed shall be calculated using the actual root diameter and unsupported bearing span. Normal maximum RPM shall remain below the manufacturer’s recommended limit.
+- The drive system shall not be rejected merely because the final cut envelope is smaller than the sheet-support area.
+- Drive components shall be guarded while remaining accessible for preload, lubrication, alignment, and replacement.
 - The drive system shall not depend on a proprietary controller.
 
 ## 5. Controls
@@ -104,12 +110,13 @@
 
 Rev B shall not be released until actual guide and drive components are selected and the THC architecture boundary is defined. Rev B must include:
 
-- final material-support area, work envelope, and overall dimensions;
+- final clear sheet-support area, calculated cutting envelope, and overall dimensions;
 - tube cut list;
 - assembly model;
 - laser-cut DXFs and fabrication drawings;
 - rail/block and drive hole tables;
 - motor and end-support drawings;
+- ball-screw critical-speed and usable-stroke calculations;
 - wiring diagram and terminal schedule;
 - FluidNC configuration and any X-1 firmware-fork definition;
 - THC architecture, signal diagram, configuration, and validation plan;

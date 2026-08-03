@@ -49,13 +49,13 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-008 - Compact half-sheet capacity
+### D-008 - Half-sheet support area versus cut travel
 
-- **Decision:** X-1 shall physically accept and support an untrimmed 48 × 48 inch half-sheet.
-- **Cutting target:** Approximately 48 × 48 inches, with exact usable travel determined from the selected standard guide and drive hardware.
-- **Reason:** Half-sheet compatibility is the important capability missing from many small plasma tables. The existing large laser already handles long work, so X-1 does not need a 4 × 5, 4 × 6, or 4 × 8 envelope.
-- **Cost rule:** Prefer the shortest standard motion components that satisfy the half-sheet requirement. Do not buy longer screws or rails simply to maximize travel.
-- **Status:** Locked requirement; exact travel open until hardware selection
+- **Decision:** X-1 shall provide approximately 50 × 50 inches of clear sheet-support area so an untrimmed 48 × 48 inch half-sheet can be loaded with about 1 inch of clearance on each side.
+- **Clarification:** The cutting envelope is a separate dimension and is not required to equal 48 × 48 inches. Gantry trucks, carriage width, torch offset, limits, supports, and overtravel may reduce usable cut travel.
+- **Reason:** Half-sheet compatibility is the important capability missing from many small plasma tables. The existing large laser already handles long work.
+- **Cost rule:** Prefer the shortest standard motion components that satisfy the support-area requirement and deliver a useful cut envelope. Do not buy longer screws or rails merely to maximize travel.
+- **Status:** Locked requirement; exact cut travel open until hardware selection
 - **Date:** 2026-08-02
 
 ### D-009 - Dedicated operator software
@@ -80,6 +80,16 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked
 - **Date:** 2026-08-02
 
+### D-012 - Main-axis ball-screw direction
+
+- **Decision:** Use ball-screw drives for X, Y-left, and Y-right.
+- **Diameter baseline:** 16 mm nominal, approximately 5/8 inch, is the minimum main-axis candidate.
+- **Reason:** Main-axis loads are light, but a roughly four-foot screw span is limited by critical rotational speed and whip. A 12 mm, approximately 1/2-inch, screw gives away too much speed margin for the baseline design.
+- **Open details:** Exact lead, length, root diameter, end machining, bearing support arrangement, nut style, coupler, motor, and delivered cost.
+- **Z axis:** May use a smaller screw or compact purchased slide.
+- **Status:** Architecture and minimum candidate locked; exact package open
+- **Date:** 2026-08-02
+
 ## Open decisions
 
 ### O-001 - Y linear guide
@@ -94,11 +104,13 @@ This file records project decisions separately from brainstorming. A decision is
 - Dual HGR15
 - HGR20
 
-### O-003 - X/Y drive system
+### O-003 - Main-axis ball-screw package
 
-- Rack and pinion
-- Timing belt
-- Ball screw
+- Exact 16 mm screw series and lead
+- Exact overall lengths and usable strokes
+- Fixed-supported versus fixed-fixed bearing arrangement
+- Ball nut, housing, couplers, and motor interfaces
+- Critical-speed and rapid-speed verification
 
 ### O-004 - Motors and drives
 

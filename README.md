@@ -2,7 +2,7 @@
 
 **Laser X Design X-1 CNC Plasma Table**
 
-X-1 is a clean-sheet CNC plasma table built around available 1/8-inch-wall tube, laser-cut/formable metal parts, purchased linear guides, a V1 Engineering Jackpot controller, FluidNC, required automatic THC, and dedicated X-1 operator software.
+X-1 is a clean-sheet CNC plasma table built around available 1/8-inch-wall tube, laser-cut/formable metal parts, purchased linear guides, ball-screw drive, a V1 Engineering Jackpot controller, FluidNC, required automatic THC, and dedicated X-1 operator software.
 
 The project uses the JD's Garage and CrossFire PRO MAX files as references. X-1 is not a direct copy. Released parts and software must come from verified X-1 requirements, selected hardware, measurements, calculations, and testing.
 
@@ -25,14 +25,15 @@ Read these before designing, purchasing, coding, or fabricating:
 
 **Phase 1 — Architecture and Component Freeze**
 
-Current objective: select the exact guide, drive, motor/driver, Z-axis, and THC architecture needed to freeze the work envelope and start the Rev B manufacturing package.
+Current objective: select the exact guide, ball-screw, motor/driver, Z-axis, and THC architecture needed to freeze the machine geometry and start the Rev B manufacturing package.
 
 Current baseline:
 
-- at least 48-inch material width;
-- approximately 60–72 inches of Y cutting travel, finalized from affordable standard components;
+- approximately 50 × 50 inches of clear sheet-support area for a 48 × 48 inch half-sheet;
+- cuttable X/Y travel is separate, open, and may be smaller than the sheet-support area;
 - welded 1/8-inch-wall tube structure;
 - purchased X/Y linear guides and metal structural carriages;
+- 16 mm nominal, approximately 5/8-inch, ball-screw baseline for X, Y-left, and Y-right;
 - independent Y-left/Y-right drive and automatic squaring;
 - Jackpot controller with FluidNC;
 - Everlast PowerPlasma 82i;
@@ -45,7 +46,7 @@ Fixed-height cutting is an intermediate commissioning test. X-1 is not considere
 
 - Y guide family and exact length
 - X guide family and exact length
-- X/Y drive: rack and pinion, timing belt, or ball screw
+- exact 16 mm ball-screw series, lead, lengths, supports, nuts, and couplers
 - motor and driver strategy
 - Z-axis guide and drive
 - FluidNC-compatible THC hardware and firmware boundary
