@@ -49,11 +49,11 @@ This file records project decisions separately from brainstorming. A decision is
 
 ### D-008 - Material capacity and compact format
 
-- **Decision:** X-1 shall remain a compact half-sheet machine. The one-piece water/slat bed must accept the intended half-sheet stock with practical loading clearance; exact cut travel is set by the precision-motion geometry.
+- **Decision:** X-1 shall remain a compact half-sheet-class machine. The one-piece water/slat bed must accept the intended stock with practical loading clearance; exact cut travel is set by the precision-motion geometry.
 - **Status:** Locked requirement; final envelope open until CAD closes
 - **Date:** 2026-08-02
 
-### D-009 - Dedicated operator software
+### D-009 - Complete operator interface
 
 - **Decision:** The finished machine shall have a complete plasma-machine operator interface. A generic sender alone is not acceptable.
 - **Clarification:** A mature existing plasma interface such as QtPlasmaC may satisfy this requirement; custom X-1 software remains optional only where it adds real value rather than duplicating proven machine functions.
@@ -82,29 +82,27 @@ This file records project decisions separately from brainstorming. A decision is
 ### D-013 - CrossFire PRO mechanical replica
 
 - **Original decision:** Reproduce the standard CrossFire PRO frame and motion system as faithfully as possible.
-- **Status:** **Superseded by D-015.** The CrossFire PRO guide remains a reference for packaging, one-piece/compact table proportions, dual-Y layout, assembly sequence, water/slat concepts, and floating-head function. It is not the final motion architecture.
+- **Status:** **Superseded by D-015 and D-019.** The CrossFire PRO guide remains a reference for packaging, dual-Y layout, assembly sequence, water/slat concepts, and floating-head purpose. It is not the final motion architecture.
 - **Date:** 2026-08-03
 
 ### D-014 - CrossFire PRO ACME main-axis drive
 
 - **Original decision:** Use OEM-equivalent multi-start ACME screws and acetal anti-backlash nuts.
-- **Status:** **Superseded by D-016.** ACME screws are not acceptable for the precision-sign-cutter objective.
+- **Status:** **Superseded by D-016.** ACME screws are not acceptable for the precision objective.
 - **Date:** 2026-08-03
 
-### D-015 - Precision sign-cutter mission
+### D-015 - Thin-sheet precision mission
 
-- **Decision:** X-1 is a compact, high-quality CNC plasma machine optimized for intricate 16-gauge and 18-gauge signs and delicate profiles, not a low-cost CrossFire clone and not a replacement for the existing large plasma table.
-- **Priority order:** contour fidelity, low backlash, smooth direction reversal, small-feature quality, acceleration, repeatable touch-off, stable THC, serviceability, and then maximum cutting envelope.
-- **Reference boundary:** CrossFire PRO geometry and assembly concepts may be reused only where they do not compromise precision motion.
-- **Status:** Locked
+- **Original decision:** Optimize X-1 for intricate 16-gauge and 18-gauge signs.
+- **Status:** **Superseded by D-019.** The production material range is 10 through 18 gauge.
 - **Date:** 2026-08-03
 
 ### D-016 - Precision linear motion
 
 - **Decision:** Use profile linear rails with metal carriages on X and both Y sides. Use recirculating ball screws on X, Y-left, and Y-right. No ACME screws and no structural rolling bearings running directly on tube.
-- **Ball-screw requirements:** preloaded or low-backlash nuts; verified root diameter; verified lead; speed and critical-speed calculation; supported at both ends; fixed-fixed support preferred where alignment and cost permit; guarded from plasma dust and water.
-- **Sizing direction:** evaluate 16 mm and 20 mm screws with 10 mm or higher lead as appropriate. The longest X screw may require a larger diameter or higher lead than the shorter Y screws. Exact selections remain open until the machine envelope and motion targets are calculated.
-- **Guidance direction:** profile rails are preferred over SBR supported round rails for rigidity, compact carriage geometry, and repeatability. Exact HGR/HGW size and block count remain open.
+- **Ball-screw requirements:** preloaded or low-backlash nuts; verified root diameter and lead; speed and critical-speed calculations; support at both ends; fixed-fixed support preferred where alignment and cost permit; guards against plasma dust and water.
+- **Sizing direction:** evaluate 16 mm and 20 mm screws with 10 mm or higher lead as appropriate. The longest X screw may require a larger diameter or higher lead than the shorter Y screws.
+- **Guidance direction:** profile rails are preferred over SBR supported round rails for rigidity, compact carriage geometry, and repeatability.
 - **Status:** Architecture locked; exact components open
 - **Date:** 2026-08-03
 
@@ -113,7 +111,7 @@ This file records project decisions separately from brainstorming. A decision is
 - **Decision:** Select the controller by the precision-plasma requirements rather than by already-owned hardware.
 - **Current leading architecture:** LinuxCNC + QtPlasmaC with deterministic Ethernet motion hardware and an isolated arc-voltage interface.
 - **FluidNC/Jackpot rule:** FluidNC may remain only if bench testing proves position-aware THC, velocity anti-dive, floating-head probing, dual-Y squaring, cut recovery, and the required operator workflow without building an entire plasma-control stack from scratch.
-- **Status:** Decision gate open; LinuxCNC/QtPlasmaC is preferred
+- **Status:** Decision gate open; LinuxCNC/QtPlasmaC preferred
 - **Date:** 2026-08-03
 
 ### D-018 - One-piece water bed and floating head
@@ -122,54 +120,71 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked
 - **Date:** 2026-08-03
 
+### D-019 - 10–18 gauge laser-approach plasma mission
+
+- **Decision:** X-1 is a compact precision plasma machine intended to approach fiber-laser-like contour quality as closely as practical while cutting mild steel from 10 gauge through 18 gauge.
+- **Material range:** 10, 12, 14, 16, and 18 gauge mild steel are required production materials.
+- **Quality emphasis:** 14–18 gauge receives the highest fine-feature and intricate-sign priority. 10–12 gauge must cut cleanly, accurately, and reliably, with feature-size expectations adjusted for the wider plasma kerf and thicker material.
+- **Reality boundary:** X-1 is not expected to equal fiber laser kerf width, heat-affected zone, minimum feature size, or absolute tolerance. The machine shall eliminate avoidable motion, height-control, air-quality, consumable, and process errors so the remaining limitation is primarily the plasma process itself.
+- **System rule:** Motion hardware, torch/source/consumables, compressed-air quality, CAM strategy, probing, THC, and operator software are one cut-quality system. A precision frame alone is not sufficient.
+- **Status:** Locked
+- **Date:** 2026-08-03
+
 ## Open decisions
 
 ### O-001 - Final work envelope and frame geometry
 
-- clear sheet-support dimensions
-- actual X/Y cutting travel
-- overall footprint and access space
-- one-piece pan depth, drains, and slat layout
-- rail mounting surfaces and alignment adjustment
+- clear sheet-support dimensions;
+- actual X/Y cutting travel;
+- overall footprint and access space;
+- one-piece pan depth, drains, and slat layout;
+- rail mounting surfaces and alignment adjustment.
 
 ### O-002 - Profile rails
 
-- Y rail size, length, preload class, and two-block spacing per side
-- X rail arrangement: one HGR20, dual HGR15, or equivalent
-- Z guide size and floating-head arrangement
-- rail protection and lubrication access
+- Y rail size, length, preload class, and two-block spacing per side;
+- X rail arrangement: one HGR20, dual HGR15, or equivalent;
+- Z guide size and floating-head arrangement;
+- rail protection and lubrication access.
 
 ### O-003 - Ball-screw packages
 
-- exact X and Y screw diameters, leads, lengths, and root diameters
-- fixed-supported versus fixed-fixed supports
-- single preloaded nut versus double nut
-- end machining, bearing blocks, couplers, and motor interfaces
-- critical-speed, rapid-speed, acceleration, and torque calculations
+- exact X and Y screw diameters, leads, lengths, and root diameters;
+- fixed-supported versus fixed-fixed supports;
+- single preloaded nut versus double nut;
+- end machining, bearing blocks, couplers, and motor interfaces;
+- critical-speed, rapid-speed, acceleration, and torque calculations.
 
 ### O-004 - Motors and drives
 
-- closed-loop NEMA 23/24 stepper system versus 400 W-class AC servos
-- motor inertia, encoder resolution, drive voltage, and tuning
-- direct coupling versus timing-belt reduction
+- closed-loop NEMA 23/24 stepper system versus 400 W-class AC servos;
+- motor inertia, encoder resolution, drive voltage, and tuning;
+- direct coupling versus timing-belt reduction.
 
 ### O-005 - Z axis and sensing
 
-- compact ball screw or precision lead mechanism
-- powered travel and floating travel
-- touch-off switch, overtravel, and breakaway design
-- ohmic sensing as optional primary probe with float fallback
+- compact ball screw or precision lead mechanism;
+- powered travel and floating travel;
+- touch-off switch, overtravel, and breakaway design;
+- ohmic sensing as optional primary probe with float fallback.
 
 ### O-006 - Control platform
 
-- LinuxCNC/QtPlasmaC + Mesa-class Ethernet hardware + isolated voltage interface
-- FluidNC/Jackpot only after documented requirement testing
-- exact I/O count, step/dir channels, Arc OK, torch relay, E-stop, probing, and THC input hardware
+- LinuxCNC/QtPlasmaC + Mesa-class Ethernet hardware + isolated voltage interface;
+- FluidNC/Jackpot only after documented requirement testing;
+- exact I/O count, step/dir channels, Arc OK, torch relay, E-stop, probing, and THC input hardware.
 
-### O-007 - Operator software
+### O-007 - Plasma source, torch, and consumables
 
-- QtPlasmaC as the production operator interface
-- optional X-1 companion application only for functions not already handled well by QtPlasmaC
+- baseline performance of the existing Everlast PowerPlasma 82i/IPT-80 machine torch;
+- low-amperage nozzle options and verified cut charts for 10–18 gauge;
+- alternative production source with mechanized fine-cut consumables if the Everlast arc/consumable system becomes the cut-quality limit;
+- delivered cost, consumable cost, kerf, dross, angularity, and repeatability comparison.
+
+### O-008 - Operator software
+
+- QtPlasmaC as the production operator interface;
+- optional X-1 companion application only for functions not already handled well by QtPlasmaC.
 
 ## Change rule
 
