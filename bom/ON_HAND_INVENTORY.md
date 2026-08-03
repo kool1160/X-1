@@ -4,7 +4,8 @@
 
 | ID | Category | Manufacturer/model | Qty | Condition | Key ratings/dimensions | Reuse decision | Evidence/location |
 |---|---|---|---:|---|---|---|---|
-| SRC-001 | CNC plasma source | LOTOS LTP5500DCNC | 1 | On hand; previously ran on JD's Garage table | 20–55 A on 220/240 V; 20–35 A on 110/120 V; non-HF blowback pilot arc; CNC torch-start interface; 1:1 raw arc-voltage/THC output; machine torch on hand | Baseline production-source candidate; controlled 10–18 gauge testing required | Owner photo; official LOTOS product/manual; issue #15 |
+| SRC-001 | CNC plasma source | LOTOS LTP5500DCNC | 1 | On hand; previously ran on JD's Garage table | 20–55 A on 220/240 V; 20–35 A on 110/120 V; non-HF blowback pilot arc; CNC torch-start interface; 1:1 raw arc-voltage/THC output | Baseline production-source candidate; controlled 10–18 gauge testing required | Owner photo; official LOTOS product/manual; issue #15 |
+| TORCH-001 | CNC machine torch | PlasmaDyn iPT60 / PTM-60 machine torch | 1 | On hand; previously used with LOTOS source | iPT60/PT60 consumable family; low-amperage 20A, 30A, 40A, and 50A nozzle options available; exact body marking, connector, and lead length still to verify | Baseline machine-torch candidate | Owner identification; PlasmaDyn catalog; `docs/PLASMA_SOURCE_BASELINE.md`; issue #15 |
 | SRC-002 | CNC plasma source | Everlast PowerPlasma 82i | 1 | On hand | 20–80 A; machine torch; CNC interface/divided voltage previously investigated | Development/comparison source | Existing table and project records; issue #15 |
 | CTRL-001 | Controller | V1 Engineering Jackpot CNC Controller V1.2.1 | 1 | On hand | TBD board/ESP32/firmware details | Evaluate; no longer assumed production controller | Photos required |
 | DRV-001 | Stepper driver | TMC2209 modules installed on Jackpot | TBD | On hand | Current/microstep settings TBD | Evaluate | Photos/settings required |
@@ -15,11 +16,11 @@
 | SW-001 | Home/limit switch | TBD | TBD | On hand | Contact type/voltage TBD | Evaluate | Continuity test required |
 | REL-001 | Relay/contactor | TBD | TBD | On hand | Coil/contact/isolation rating TBD | Evaluate | Datasheet required |
 
-## LOTOS source record still required
+## LOTOS / PlasmaDyn source record still required
 
-- exact machine-torch manufacturer/model and lead length;
-- installed nozzle/electrode/shield part numbers;
-- available nozzle-orifice and amperage options;
+- exact torch body marking: iPT60M, PTM-60, or equivalent;
+- machine-torch lead length;
+- installed retaining cap, swirl ring, electrode, nozzle, shield, and standoff part numbers;
 - exact mating CNC/THC connectors and cables on hand;
 - verify torch-start contact requirements and pinout on this exact unit;
 - verify whether a separate Arc OK contact is present and document its electrical behavior;
