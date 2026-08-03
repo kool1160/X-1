@@ -19,8 +19,10 @@
 - Tube-running rolling carriages: excluded
 - Gantry: independent Y-left/Y-right drive and automatic squaring
 - Z: powered precision slide with mandatory floating touch-off and separate breakaway
-- Plasma source: existing Everlast PowerPlasma 82i available for development; production source/torch/consumables open pending cut tests
-- THC: mandatory closed-loop arc-voltage THC
+- Baseline plasma candidate: on-hand LOTOS APEX LTP6300DCNC with machine torch, non-HF blowback start, CNC torch input, Arc OK, and 1:1 raw arc-voltage output
+- Comparison plasma source: on-hand Everlast PowerPlasma 82i with machine torch
+- Production source/torch/consumables: open pending controlled 10–18 gauge cut tests
+- THC: mandatory closed-loop arc-voltage THC; LOTOS raw voltage requires a properly engineered isolated high-voltage divider/THCAD interface
 - Preferred control direction: LinuxCNC + QtPlasmaC with deterministic Ethernet motion and isolated arc-voltage interface
 - FluidNC/Jackpot: retained only as a candidate pending documented requirement testing
 - Operator interface: complete plasma-machine interface; generic G-code sender alone is not acceptable
@@ -58,7 +60,7 @@ Do not copy:
 
 1. **#3 — Select exact profile rails, blocks, lengths, and mounting strategy**
 2. **#4 — Select exact ball screws, nuts, supports, couplers, motors, and drives**
-3. **#5 — Inventory reusable controls, motors, drives, power supplies, and enclosure hardware**
+3. **#5 — Inventory reusable controls, motors, drives, power supplies, plasma sources, and enclosure hardware**
 4. **#8 — Select the closed-loop THC and isolated voltage architecture**
 5. **#9 — Select/validate the production operator and controller software stack**
 6. **#6 — Build the Rev B SolidWorks precision-machine assembly after components freeze**
@@ -71,12 +73,14 @@ Do not copy:
 3. Select Y and X profile-rail candidates from exact drawings.
 4. Build candidate ball-screw calculations for X and Y using actual bearing span, root diameter, support arrangement, RPM, torque, and inertia.
 5. Compare closed-loop NEMA 23/24 drives against 400 W-class AC servos.
-6. Bench-test the Everlast PowerPlasma 82i on controlled 10, 12, 14, 16, and 18 gauge coupons using the best approved low-amperage machine-torch consumables available.
-7. Compare the Everlast results against at least one mechanized fine-cut plasma process before declaring the production source.
-8. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting cost and availability.
-9. Design the one-piece pan and rail-support structure so final rail alignment occurs after welding.
-10. Design the Z floating touch-off and breakaway system.
-11. Create the first precision-motion SolidWorks envelope and collision study.
+6. Identify the exact LOTOS machine torch and every available low-amperage nozzle/electrode/shield combination.
+7. Verify the LOTOS CNC interfaces: torch-start contacts, Arc OK contact type, and loaded 1:1 raw arc-voltage behavior.
+8. Bench-test both the LOTOS LTP6300DCNC and Everlast PowerPlasma 82i on controlled 10, 12, 14, 16, and 18 gauge coupons.
+9. Compare the better on-hand result against at least one mechanized fine-cut plasma process before declaring the production source.
+10. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting cost and availability.
+11. Design the one-piece pan and rail-support structure so final rail alignment occurs after welding.
+12. Design the Z floating touch-off and breakaway system.
+13. Create the first precision-motion SolidWorks envelope and collision study.
 
 ## Phase 1 exit criteria
 
