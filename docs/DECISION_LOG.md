@@ -55,6 +55,14 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked approach; final dimension open
 - **Date:** 2026-08-02
 
+### D-009 - Dedicated operator software
+
+- **Decision:** Build dedicated X-1 operator software. The finished machine will not rely on a generic G-code sender or the stock FluidNC WebUI as its primary operating interface.
+- **Architecture:** FluidNC remains the embedded motion-control firmware. The X-1 application provides the plasma-specific operator workflow, job management, visualization, diagnostics, material profiles, alarms, recovery, and future THC interface.
+- **Job execution direction:** Prefer uploading jobs to controller storage and starting them from FluidNC storage rather than depending on continuous Wi-Fi G-code streaming.
+- **Status:** Locked
+- **Date:** 2026-08-02
+
 ## Open decisions
 
 ### O-001 - Y linear guide
@@ -91,6 +99,14 @@ This file records project decisions separately from brainstorming. A decision is
 - Standalone THC
 - Custom FluidNC development
 - Later migration to another controller
+
+### O-007 - Operator-software implementation
+
+- Windows desktop application using a web-technology shell such as Tauri
+- Native .NET desktop application
+- Browser application hosted on a dedicated machine PC
+
+The implementation must preserve an offline-capable local operator station and a documented FluidNC communications layer.
 
 ## Change rule
 
