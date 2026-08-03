@@ -10,136 +10,142 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-002 - Primary structure
+### D-002 - Primary fabrication method
 
-- **Decision:** Use available 1/8-inch-wall steel tube for the main welded frame and gantry where appropriate.
-- **Reason:** Material is available at no cost, tube is fast to fabricate, and a tube structure avoids unnecessary formed-part count and hardware.
+- **Decision:** Use available 1/8-inch-wall steel tube and laser-cut/formable metal parts to reproduce the selected frame and motion architecture.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
 ### D-003 - Sheet-metal role
 
-- **Decision:** Use laser-cut/formable sheet metal for carriages, brackets, guards, water pan, enclosure, slat holders, and removable cosmetic skirts. Do not make the entire structural frame a folded-sheet assembly.
+- **Decision:** Use laser-cut/formable sheet metal for carriages, brackets, mounts, gussets, guards, water pan, enclosure, slat holders, and removable cosmetic panels.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-004 - Guide-system direction
+### D-004 - Purchased profile-rail direction
 
-- **Decision:** Use purchased linear guides and metal structural carriages on X and Y instead of structural 3D-printed bearing assemblies.
-- **Open detail:** Supported round rail versus profile rail and final sizes.
-- **Status:** Direction locked; component selection open
+- **Original decision:** Use purchased profile or supported-round linear guides.
+- **Status:** **Superseded by D-013.** X-1 now copies the CrossFire PRO tube-rail and adjustable rolling-bearing carriage architecture.
 - **Date:** 2026-08-02
 
 ### D-005 - Controller and firmware
 
-- **Decision:** Use the existing V1 Engineering Jackpot CNC Controller V1.2.1 with FluidNC for the first X-1 control system.
-- **Status:** Locked for prototype
+- **Decision:** Use the V1 Engineering Jackpot CNC Controller V1.2.1 with FluidNC or a controlled X-1 FluidNC fork.
+- **Status:** Locked
 - **Date:** 2026-08-02
 
 ### D-006 - Dual-Y architecture
 
-- **Decision:** Use independent left and right Y motors with separate home switches for automatic gantry squaring.
+- **Decision:** Use independent left and right Y motors and drive screws.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
 ### D-007 - Staged cutting commissioning
 
 - **Decision:** Commission motion, probing, isolated torch control, Arc OK, and fixed-height cutting before enabling automatic Z correction.
-- **Clarification:** This is a troubleshooting and validation sequence. Fixed-height cutting is not the final X-1 capability and does not remove THC from the active project scope.
+- **Clarification:** Fixed-height cutting is an intermediate validation step, not the finished machine capability.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-008 - Half-sheet support area versus cut travel
+### D-008 - 50 × 50 custom half-sheet bed
 
-- **Decision:** X-1 shall provide approximately 50 × 50 inches of clear sheet-support area so an untrimmed 48 × 48 inch half-sheet can be loaded with about 1 inch of clearance on each side.
-- **Clarification:** The cutting envelope is a separate dimension and is not required to equal 48 × 48 inches. Gantry trucks, carriage width, torch offset, limits, supports, and overtravel may reduce usable cut travel.
-- **Reason:** Half-sheet compatibility is the important capability missing from many small plasma tables. The existing large laser already handles long work.
-- **Cost rule:** Prefer the shortest standard motion components that satisfy the support-area requirement and deliver a useful cut envelope. Do not buy longer screws or rails merely to maximize travel.
-- **Status:** Locked requirement; exact cut travel open until hardware selection
+- **Original decision:** Create approximately 50 × 50 inches of clear support area.
+- **Status:** **Superseded by D-013.** The standard CrossFire PRO mechanical envelope is now the replica target.
 - **Date:** 2026-08-02
 
 ### D-009 - Dedicated operator software
 
-- **Decision:** Build dedicated X-1 operator software. The finished machine will not rely on a generic G-code sender or the stock FluidNC WebUI as its primary operating interface.
-- **Architecture:** FluidNC remains the embedded motion-control firmware. The X-1 application provides the plasma-specific operator workflow, job management, visualization, diagnostics, material profiles, alarms, recovery, and THC interface.
-- **Job execution direction:** Prefer uploading jobs to controller storage and starting them from FluidNC storage rather than depending on continuous Wi-Fi G-code streaming.
+- **Decision:** Build dedicated X-1 operator software. The finished machine will not rely on a generic G-code sender or FireControl.
+- **Architecture:** FluidNC owns embedded motion; X-1 Control owns the plasma-specific operator workflow, job system, visualization, diagnostics, material profiles, alarms, recovery, and THC interface.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
 ### D-010 - Automatic THC is required
 
 - **Decision:** The completed X-1 must include automatic closed-loop torch-height control based on isolated arc-voltage measurement.
-- **Required behavior:** Position-aware Z correction, Arc OK gating, delay, anti-dive, fault handling, operator enable/disable, voltage/status display, and no accumulated Z-position error.
-- **Open detail:** Exact FluidNC-compatible hardware and firmware architecture.
-- **Status:** Requirement locked; architecture open
+- **Status:** Requirement locked; exact implementation open
 - **Date:** 2026-08-02
 
-### D-011 - Single active phase and controlled scope
+### D-011 - Controlled scope
 
-- **Decision:** Only work listed in `PROJECT_STATUS.md` is active. Unrelated ideas are recorded in `PARKING_LOT.md` and do not change the baseline without a formal decision update.
+- **Decision:** Only work listed in `PROJECT_STATUS.md` is active. Unrelated ideas stay in `PARKING_LOT.md` until formally approved.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-012 - Main-axis ball-screw direction
+### D-012 - 16 mm ball-screw direction
 
-- **Decision:** Use ball-screw drives for X, Y-left, and Y-right.
-- **Diameter baseline:** 16 mm nominal, approximately 5/8 inch, is the minimum main-axis candidate.
-- **Reason:** Main-axis loads are light, but a roughly four-foot screw span is limited by critical rotational speed and whip. A 12 mm, approximately 1/2-inch, screw gives away too much speed margin for the baseline design.
-- **Open details:** Exact lead, length, root diameter, end machining, bearing support arrangement, nut style, coupler, motor, and delivered cost.
-- **Z axis:** May use a smaller screw or compact purchased slide.
-- **Status:** Architecture and minimum candidate locked; exact package open
+- **Original decision:** Use 16 mm ball screws on X and both Y axes.
+- **Status:** **Superseded by D-014.** The replica uses CrossFire PRO multi-start ACME lead screws.
 - **Date:** 2026-08-02
+
+### D-013 - CrossFire PRO mechanical replica
+
+- **Decision:** Reproduce the standard Langmuir CrossFire PRO frame and motion system as faithfully as source dimensions and verified measurements allow.
+- **Mechanical authority:** Standard CrossFire PRO assembly guide and published PRO specifications, not the PRO MAX.
+- **Copy:** frame, legs, lower rails, Y tube rails, stanchions, adjustable rolling carriages, gantry, X carriage, ACME drive, couplers, bearings, NEMA 23 motors, water tray, slats, powered floating Z, and IHS mechanism.
+- **Do not copy:** Langmuir electronics, controller, FireControl, computer/touchscreen, wiring enclosure internals, or LS-THC.
+- **Published target:** 48.25 in X × 33.3 in Y cutting envelope and approximately 54.2 in × 69.5 in floor space.
+- **Accuracy rule:** The assembly guide is not a manufacturing drawing package. Hidden critical dimensions must be verified before release; unverified geometry must be labeled inferred.
+- **Status:** Locked
+- **Date:** 2026-08-03
+
+### D-014 - CrossFire PRO ACME main-axis drive
+
+- **Decision:** Use OEM-equivalent multi-start ACME lead screws and acetal anti-backlash nuts.
+- **Y-left and Y-right:** 3/8-8, 4-start ACME.
+- **X:** 1/2-10, 5-start ACME.
+- **Common advance:** 0.5 inch per revolution.
+- **Support:** 608 bearing at the non-motor end; clamping coupler to NEMA 23 motor at the drive end.
+- **Motor baseline:** X and both Y motors at 284 oz-in NEMA 23; Z at 180 oz-in NEMA 23.
+- **Status:** Locked specification; exact lengths and end-machining dimensions must be reconstructed
+- **Date:** 2026-08-03
 
 ## Open decisions
 
-### O-001 - Y linear guide
+### O-001 - Exact frame manufacturing geometry
 
-- SBR20 supported round rail
-- HGR20 profile rail
-- Other only with documented load, price, and mounting advantage
+- tube section dimensions and cut lengths
+- hole locations and tube spacers
+- stanchion plate dimensions
+- leg height and leveling-foot details
+- gusset and skirt geometry
 
-### O-002 - X linear guide
+### O-002 - Tube rail and carriage geometry
 
-- SBR16/SBR20
-- Dual HGR15
-- HGR20
+- Y rail lengths, hole pattern, and coating
+- bearing size, spacing, eccentric/preload details
+- X gantry tube and carriage geometry
+- exact truck overhang and hard-stop positions
 
-### O-003 - Main-axis ball-screw package
+### O-003 - ACME screw purchase package
 
-- Exact 16 mm screw series and lead
-- Exact overall lengths and usable strokes
-- Fixed-supported versus fixed-fixed bearing arrangement
-- Ball nut, housing, couplers, and motor interfaces
-- Critical-speed and rapid-speed verification
+- exact overall lengths
+- turned journal diameters and lengths
+- tapped end details
+- coupler bores
+- anti-backlash-nut mounting pattern
+- motor and bearing mount dimensions
 
-### O-004 - Motors and drives
+### O-004 - Z-axis reconstruction
 
-- Onboard TMC2209 modules
-- Existing external drives
-- New DM542/DM556-class external drives
+- guide geometry and powered stroke
+- floating travel and switch mechanism
+- torch mount dimensions
+- screw and nut specification
 
-### O-005 - Z assembly
+### O-005 - Required THC architecture
 
-- Fabricated metal Z slide
-- Purchased compact linear Z assembly
+- integrated X-1 FluidNC THC module
+- dedicated co-processor with position-aware FluidNC interface
+- standalone external THC only if Z-position reconciliation is proven
+- controller migration only if FluidNC fails a locked requirement
 
-### O-006 - Required THC architecture
+### O-006 - Operator-software implementation
 
-- Integrated X-1 FluidNC THC module
-- Dedicated THC co-processor with a position-aware FluidNC real-time interface
-- Standalone external THC only if Z-position reconciliation and fail-safe control handoff are proven
-- Controller migration only as a documented contingency if FluidNC cannot meet the locked requirement
-
-The evaluation and acceptance tests are defined in `THC_ARCHITECTURE.md`.
-
-### O-007 - Operator-software implementation
-
-- Windows desktop application using a web-technology shell such as Tauri
-- Native .NET desktop application
-- Browser application hosted on a dedicated machine PC
-
-The implementation must preserve an offline-capable local operator station and a documented FluidNC communications layer.
+- Tauri/React/TypeScript desktop application
+- native .NET desktop application
+- another offline Windows architecture proven through a communication prototype
 
 ## Change rule
 
-A locked decision can be changed when new measurements, component availability, cost, safety, or testing justify it. Record the replacement decision and preserve the old entry rather than silently rewriting project history.
+A locked decision can be changed when new measurements, source evidence, cost, safety, or testing justify it. Preserve the old entry and record the replacement decision rather than silently rewriting history.
