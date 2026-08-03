@@ -8,8 +8,8 @@ X-1 is not a direct copy of the JD's Garage or Langmuir machines. Those files ar
 
 ## Current baseline
 
-- Material capacity: the table shall physically accept and support an untrimmed 48 × 48 inch half-sheet.
-- Cutting-envelope target: approximately 48 × 48 inches, with exact usable travel frozen from the selected guides and drive hardware.
+- Material capacity: the table shall provide approximately 50 × 50 inches of clear sheet-support area so an untrimmed 48 × 48 inch half-sheet can be loaded with about 1 inch of clearance on every side.
+- Cutting envelope: not locked. Actual X/Y cut travel will be calculated from the selected guides, carriages, drive hardware, torch offset, and required overtravel. It may be smaller than 48 × 48 inches.
 - Extra Y length is not a project goal. Long work is handled by the existing large laser, so the X-1 should remain compact and inexpensive.
 - Main frame: welded 1/8-inch-wall steel tube
 - Exterior appearance: removable laser-cut skins and guards around the tube structure
@@ -31,7 +31,7 @@ The project is selecting exact guides, drive components, motors/drivers, Z-axis 
 ## Active work, in order
 
 1. Inventory reusable controller, motors, drives, power supplies, switches, relays, and enclosure hardware.
-2. Select exact X and Y guide packages that support the compact 48 × 48 target.
+2. Select exact X and Y guide packages that support a compact machine with approximately 50 × 50 inches of sheet-support area.
 3. Select the complete X/Y drive architecture and actual components.
 4. Select the Z-axis guide and drive.
 5. Select the required THC architecture, including voltage sensing, isolation, Z-control method, anti-dive behavior, and operator-software interface.
@@ -69,4 +69,4 @@ Read these in order:
 
 ## Phase 1 completion gate
 
-Phase 1 is complete only when exact guide, drive, motor/driver, and Z components are selected; a viable THC architecture is selected; verified drawings or physical measurements exist; the table supports a 48 × 48 sheet; usable cutting travel is calculated; the decision log is updated; and the machine can be modeled without inventing dimension-critical or control-critical details.
+Phase 1 is complete only when exact guide, drive, motor/driver, and Z components are selected; a viable THC architecture is selected; verified drawings or physical measurements exist; the table provides approximately 50 × 50 inches of usable sheet-support area; actual cut travel is calculated; the decision log is updated; and the machine can be modeled without inventing dimension-critical or control-critical details.
