@@ -3,14 +3,15 @@
 **Status date:** 2026-08-02  
 **Active phase:** Phase 1 — Architecture and Component Freeze  
 **Project owner:** Chris Hilton  
-**Primary objective:** Freeze a buildable, affordable X-1 architecture without drifting into unrelated machine platforms or premature detail design.
+**Primary objective:** Freeze a buildable, affordable compact half-sheet X-1 architecture without drifting into unnecessary machine length or unrelated platforms.
 
 ## Current baseline
 
 - Project name: X-1 — Laser X Design 1
 - Machine type: CNC plasma table
-- Material width: at least 48 inches
-- Target Y cutting travel: approximately 60–72 inches, based on selected standard components
+- Material capacity: physically accept and support an untrimmed 48 × 48 inch half-sheet
+- Cutting-envelope target: approximately 48 × 48 inches, finalized from selected standard components
+- Extra length: not required; the existing large laser handles long work
 - Frame: welded 1/8-inch-wall steel tube
 - Guides: purchased linear guides with metal carriages
 - Drive: open decision among rack and pinion, timing belt, and ball screw
@@ -41,12 +42,13 @@ Issue #9 is limited during this phase to communication proof, state handling, ar
 ## Immediate next actions
 
 1. Photograph and identify all reusable motion and control hardware.
-2. Collect exact listings and drawings for serious guide candidates.
+2. Collect exact listings and drawings for guide candidates sized for the compact 48 × 48 target.
 3. Collect exact listings and drawings for serious rack, belt, and screw candidates.
-4. Calculate usable travel and complete delivered cost for each drive package.
-5. Document the installed Jackpot and FluidNC versions and available I/O.
-6. Evaluate the three viable THC paths in `THC_ARCHITECTURE.md` and select one.
-7. Prove basic FluidNC communication from the future X-1 operator software stack.
+4. Compare three identical-length 1500 mm main-axis drive packages first; only consider longer Y hardware if 1500 mm cannot deliver the required support and usable travel.
+5. Calculate usable travel and complete delivered cost for each drive package.
+6. Document the installed Jackpot and FluidNC versions and available I/O.
+7. Evaluate the viable THC paths in `THC_ARCHITECTURE.md` and select one.
+8. Prove basic FluidNC communication from the future X-1 operator software stack.
 
 ## Phase 1 exit criteria
 
@@ -56,8 +58,8 @@ Phase 1 is complete only when all of the following are true:
 - exact X/Y drive components selected;
 - exact Z guide and drive selected;
 - motors and driver strategy selected;
-- usable X/Y/Z travel calculated;
-- final target work envelope frozen;
+- the table support area accepts a 48 × 48 sheet;
+- usable X/Y/Z travel calculated and the final compact work envelope frozen;
 - Jackpot and FluidNC I/O requirements verified;
 - required THC architecture selected with defined hardware and firmware boundaries;
 - X-1 operator-software communication path proven;
@@ -72,7 +74,7 @@ Do not expand active work into:
 - fiber lasers;
 - Mesa/LinuxCNC/EtherCAT migration without a documented FluidNC failure;
 - rotary axes;
-- 4×8 expansion outside the selected component tier;
+- 4 × 5, 4 × 6, or 4 × 8 expansion outside the locked compact half-sheet requirement;
 - nesting, quoting, cloud, mobile, AI, or commercial-product features;
 - cosmetic detail design before the core machine envelope and guards are established.
 
