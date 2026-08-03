@@ -42,9 +42,10 @@ This file records project decisions separately from brainstorming. A decision is
 - **Status:** Locked
 - **Date:** 2026-08-02
 
-### D-007 - Initial cutting mode
+### D-007 - Staged cutting commissioning
 
-- **Decision:** Commission motion, probing, torch control, and fixed-height cutting before developing or integrating THC.
+- **Decision:** Commission motion, probing, isolated torch control, Arc OK, and fixed-height cutting before enabling automatic Z correction.
+- **Clarification:** This is a troubleshooting and validation sequence. Fixed-height cutting is not the final X-1 capability and does not remove THC from the active project scope.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
@@ -58,8 +59,22 @@ This file records project decisions separately from brainstorming. A decision is
 ### D-009 - Dedicated operator software
 
 - **Decision:** Build dedicated X-1 operator software. The finished machine will not rely on a generic G-code sender or the stock FluidNC WebUI as its primary operating interface.
-- **Architecture:** FluidNC remains the embedded motion-control firmware. The X-1 application provides the plasma-specific operator workflow, job management, visualization, diagnostics, material profiles, alarms, recovery, and future THC interface.
+- **Architecture:** FluidNC remains the embedded motion-control firmware. The X-1 application provides the plasma-specific operator workflow, job management, visualization, diagnostics, material profiles, alarms, recovery, and THC interface.
 - **Job execution direction:** Prefer uploading jobs to controller storage and starting them from FluidNC storage rather than depending on continuous Wi-Fi G-code streaming.
+- **Status:** Locked
+- **Date:** 2026-08-02
+
+### D-010 - Automatic THC is required
+
+- **Decision:** The completed X-1 must include automatic closed-loop torch-height control based on isolated arc-voltage measurement.
+- **Required behavior:** Position-aware Z correction, Arc OK gating, delay, anti-dive, fault handling, operator enable/disable, voltage/status display, and no accumulated Z-position error.
+- **Open detail:** Exact FluidNC-compatible hardware and firmware architecture.
+- **Status:** Requirement locked; architecture open
+- **Date:** 2026-08-02
+
+### D-011 - Single active phase and controlled scope
+
+- **Decision:** Only work listed in `PROJECT_STATUS.md` is active. Unrelated ideas are recorded in `PARKING_LOT.md` and do not change the baseline without a formal decision update.
 - **Status:** Locked
 - **Date:** 2026-08-02
 
@@ -94,11 +109,14 @@ This file records project decisions separately from brainstorming. A decision is
 - Fabricated metal Z slide
 - Purchased compact linear Z assembly
 
-### O-006 - THC path
+### O-006 - Required THC architecture
 
-- Standalone THC
-- Custom FluidNC development
-- Later migration to another controller
+- Integrated X-1 FluidNC THC module
+- Dedicated THC co-processor with a position-aware FluidNC real-time interface
+- Standalone external THC only if Z-position reconciliation and fail-safe control handoff are proven
+- Controller migration only as a documented contingency if FluidNC cannot meet the locked requirement
+
+The evaluation and acceptance tests are defined in `THC_ARCHITECTURE.md`.
 
 ### O-007 - Operator-software implementation
 

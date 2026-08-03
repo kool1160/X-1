@@ -1,10 +1,10 @@
 # X-1 Operator Software
 
-This directory will contain the dedicated software used to operate the X-1 plasma table.
+This directory contains the dedicated software used to operate the X-1 plasma table.
 
-FluidNC remains the embedded motion-control firmware on the Jackpot controller. The X-1 operator software is a separate application that connects to FluidNC and presents a complete plasma-machine interface rather than a generic G-code sender.
+FluidNC or a controlled X-1 FluidNC fork remains the embedded motion-control firmware on the Jackpot controller. X-1 Control is a separate Windows application that connects to FluidNC and presents a complete plasma-machine interface rather than a generic G-code sender.
 
-Planned capabilities include:
+Required capabilities include:
 
 - machine connection and health status;
 - homing and automatic gantry squaring;
@@ -12,12 +12,29 @@ Planned capabilities include:
 - material and cut-profile management;
 - G-code import, validation, preview, and job queue;
 - sheet origin and work-offset setup;
-- perimeter trace and dry-run modes;
+- perimeter trace and torch-inhibited dry-run modes;
 - probe, pierce-height, cut-height, and torch-control workflows;
 - Arc OK, float switch, limits, E-stop, and alarm display;
 - run, pause, resume, stop, and cut-recovery controls;
 - live position, feed, job progress, elapsed time, and estimated remaining time;
-- event logging, fault history, configuration backup, and diagnostics;
-- future THC controls and voltage visualization after the THC architecture is proven.
+- automatic THC enable/disable, target voltage, live voltage, active/inhibited state, and fault display;
+- THC voltage/correction logs and configuration compatibility checks;
+- event logging, fault history, configuration backup, and diagnostics.
 
-The software must not bypass hardware safety. E-stop, torch inhibit, and other critical safety functions remain hardwired.
+## Development limit during Phase 1
+
+Active software work is limited to:
+
+- selecting the application stack through a communication proof;
+- implementing USB transport first and network transport second;
+- parsing FluidNC startup, status, alarm, and acknowledgement messages;
+- establishing the machine-state model and traffic logging;
+- documenting the future THC command/status contract.
+
+Do not drift into full CAD, CAM, nesting, quoting, cloud, mobile, AI, or commercial features during the current phase.
+
+## Safety boundary
+
+X-1 Control must not bypass hardware safety. E-stop, torch inhibit, plasma isolation, and controller-side fault responses remain independent of the Windows application. Real-time THC correction cannot depend on round-trip communication through the application.
+
+See `docs/OPERATOR_SOFTWARE.md` and `docs/THC_ARCHITECTURE.md` for the controlled architecture.

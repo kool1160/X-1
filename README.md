@@ -2,69 +2,76 @@
 
 **Laser X Design X-1 CNC Plasma Table**
 
-X-1 is a clean-sheet CNC plasma-table project built around Chris Hilton's fabrication capability, available 1/8-inch-wall tube, laser-cut/formable sheet metal, a V1 Engineering Jackpot controller, and FluidNC.
+X-1 is a clean-sheet CNC plasma table built around available 1/8-inch-wall tube, laser-cut/formable metal parts, purchased linear guides, a V1 Engineering Jackpot controller, FluidNC, required automatic THC, and dedicated X-1 operator software.
 
-The project is intentionally **not** a direct clone of either reference machine. The JD's Garage and CrossFire PRO MAX material is being used to study proportions, motion layouts, assembly order, alignment methods, water-pan construction, and low-cost component choices. X-1 will use a welded tube structure, purchased linear guides, metal carriages, removable cosmetic skins, and a drive system selected for cost, serviceability, and available standard lengths.
+The project uses the JD's Garage and CrossFire PRO MAX files as references. X-1 is not a direct copy. Released parts and software must come from verified X-1 requirements, selected hardware, measurements, calculations, and testing.
 
-## Current status
+## Start here
 
-**Phase:** Rev A concept and component selection  
-**Nominal work envelope:** 48 inches wide; final length will be set by the selected standard rail and drive-component lengths, likely about 60-72 inches.  
-**Controller:** V1 Engineering Jackpot CNC Controller V1.2.1  
-**Firmware:** FluidNC  
-**Plasma source:** Everlast PowerPlasma 82i
+Read these before designing, purchasing, coding, or fabricating:
 
-## Decisions already made
+1. [Project summary](PROJECT_SUMMARY.md)
+2. [Current project status](docs/PROJECT_STATUS.md)
+3. [Locked decisions](docs/DECISION_LOG.md)
+4. [Design requirements](docs/REQUIREMENTS.md)
+5. [Project rules](docs/PROJECT_RULES.md)
+6. [System architecture](docs/ARCHITECTURE.md)
+7. [THC architecture](docs/THC_ARCHITECTURE.md)
+8. [Operator-software architecture](docs/OPERATOR_SOFTWARE.md)
 
-- The machine is named **X-1 - Laser X Design 1**.
-- The primary structure will be welded from available 1/8-inch-wall tube.
-- Sheet metal will be used where it adds value: carriages, brackets, guards, pan, enclosure, slat holders, and removable exterior skins.
-- Structural motion parts will be metal. 3D-printed parts may be used only for noncritical jigs, covers, spacers, or prototypes.
-- X and Y will use purchased linear guides; the exact guide family and size remain open.
-- The gantry will use independent left/right Y drives and separate home switches for automatic squaring.
-- The water/slat structure will not be the precision reference for the motion rails.
-- The first operating milestone is reliable fixed-height cutting. THC is a later phase.
+`PROJECT_STATUS.md` is the current-work authority. Ideas outside that active phase go into the [parking lot](docs/PARKING_LOT.md) instead of changing the project direction.
 
-## Open engineering decisions
+## Current phase
 
-1. **Y guide:** SBR20 supported round rail or HGR20 profile rail.
-2. **X guide:** SBR16/SBR20 or HGR15/HGR20.
-3. **X/Y drive:** rack and pinion, timing belt, or ball screw.
-4. **Machine length:** determined from the best-value standard guide and drive lengths.
-5. **Motors/drivers:** Jackpot-mounted TMC2209 modules or external step/direction drives.
-6. **Z assembly:** fabricated metal slide or purchased compact Z module.
-7. **THC architecture:** standalone controller, custom FluidNC work, or later controller migration.
+**Phase 1 — Architecture and Component Freeze**
 
-## Source material
+Current objective: select the exact guide, drive, motor/driver, Z-axis, and THC architecture needed to freeze the work envelope and start the Rev B manufacturing package.
 
-- [X-1 Preliminary Engineering and Build Plan - Rev A](X-1_CNC_Plasma_Table_Preliminary_Build_Plan_Rev_A.pdf)
-- [CrossFire PRO MAX Assembly Guide](CrossFire%20PRO%20MAX%20Assembly%20Guide%20_%20Langmuir%20Systems.pdf)
-- [JD's Garage Imperial reference package](Imperial%20Version-20260802T230932Z-1-001.zip)
+Current baseline:
 
-These files are references, not released X-1 manufacturing drawings. Verify the original license and redistribution terms before publishing or redistributing third-party material.
+- at least 48-inch material width;
+- approximately 60–72 inches of Y cutting travel, finalized from affordable standard components;
+- welded 1/8-inch-wall tube structure;
+- purchased X/Y linear guides and metal structural carriages;
+- independent Y-left/Y-right drive and automatic squaring;
+- Jackpot controller with FluidNC;
+- Everlast PowerPlasma 82i;
+- dedicated Windows X-1 operator application;
+- automatic closed-loop arc-voltage THC required for the finished machine.
+
+Fixed-height cutting is an intermediate commissioning test. X-1 is not considered complete until the selected THC system is integrated and validated.
+
+## Open architecture decisions
+
+- Y guide family and exact length
+- X guide family and exact length
+- X/Y drive: rack and pinion, timing belt, or ball screw
+- motor and driver strategy
+- Z-axis guide and drive
+- FluidNC-compatible THC hardware and firmware boundary
+- operator-software implementation stack after the communication proof
+
+No dimension-critical Rev B drawing is released until the exact purchased components are selected and verified.
 
 ## Repository map
 
-- [`docs/`](docs/) - requirements, architecture, decision work, development sequence, and project status
-- [`references/`](references/) - reference-file index and usage notes
-- [`cad/`](cad/) - future SolidWorks assemblies and source models
-- [`drawings/`](drawings/) - released PDFs, DXFs, hole tables, and cut files
-- [`bom/`](bom/) - component research and released bills of material
-- [`firmware/fluidnc/`](firmware/fluidnc/) - FluidNC configuration and commissioning notes
-- [`testing/`](testing/) - inspection, alignment, and commissioning records
+- [`docs/`](docs/) — scope, status, requirements, decisions, architecture, and development plan
+- [`references/`](references/) — reference index and usage rules
+- [`cad/`](cad/) — native SolidWorks models
+- [`drawings/`](drawings/) — released PDFs, DXFs, hole tables, and manufacturing outputs
+- [`bom/`](bom/) — component research and released bills of material
+- [`firmware/fluidnc/`](firmware/fluidnc/) — FluidNC configuration and controlled firmware work
+- [`software/`](software/) — X-1 operator application
+- [`testing/`](testing/) — inspection, alignment, commissioning, and validation records
 
-## Immediate design gate
+## Primary references
 
-Before releasing Rev B drawings, select actual listings for:
+- [X-1 Preliminary Engineering and Build Plan — Rev A](X-1_CNC_Plasma_Table_Preliminary_Build_Plan_Rev_A.pdf)
+- [CrossFire PRO MAX Assembly Guide](CrossFire%20PRO%20MAX%20Assembly%20Guide%20_%20Langmuir%20Systems.pdf)
+- [JD's Garage Imperial reference package](Imperial%20Version-20260802T230932Z-1-001.zip)
 
-- Y linear guides and blocks
-- X linear guides and blocks
-- X/Y drive components and standard lengths
-- Motors, external drivers if used, couplers/pulleys, and end supports
-- Z-axis guide and drive
-
-After those parts are selected and measured, Rev B can contain final overall dimensions, tube cut lengths, rail-hole patterns, metal carriage DXFs, motor brackets, wiring schedules, and a working FluidNC machine configuration.
+These are reference materials, not released X-1 manufacturing authority. Verify third-party licensing before redistribution.
 
 ## Safety
 
-This repository is an engineering-development workspace, not a certification. Plasma arc voltage, mains wiring, automatic motion, fumes, hot material, fire, pinch points, and UV/IR exposure can cause severe injury or death. The finished machine requires verified grounding, isolation, hardwired emergency-stop behavior, ventilation, fire controls, guarding, and confirmed plasma-interface pinouts before operation.
+This repository is an engineering-development workspace, not a certification. Plasma arc voltage, mains power, automatic motion, fumes, fire, hot material, pinch points, and UV/IR exposure can cause severe injury or death. The finished machine requires verified isolation, grounding, hardwired emergency-stop behavior, guarding, ventilation, fire controls, and confirmed plasma-interface pinouts before operation.
