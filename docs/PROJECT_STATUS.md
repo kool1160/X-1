@@ -1,13 +1,16 @@
 # X-1 Project Status
 
 **Status date:** 2026-08-03  
-**Active phase:** Phase 1 — Precision Motion and Plasma Architecture Freeze  
+**Active phase:** Phase 1 — Precision Motion, Plasma Process, and Control Freeze  
 **Project owner:** Chris Hilton  
-**Primary objective:** Freeze a compact precision-sign-cutter architecture for intricate 16-gauge and 18-gauge work without drifting back into a low-cost CrossFire clone or duplicating the existing large plasma table.
+**Primary objective:** Freeze a compact 10–18 gauge precision plasma architecture that approaches fiber-laser-like contour quality as closely as practical without fiber-laser cost.
 
 ## Current baseline
 
-- Mission: intricate signs, delicate profiles, small holes/arcs, and repeatable thin-sheet cutting
+- Mission: precision mild-steel cutting from 10 gauge through 18 gauge
+- Fine-detail emphasis: 14, 16, and 18 gauge intricate signs and delicate profiles
+- Heavier-sheet requirement: clean, accurate, repeatable 10 and 12 gauge profiles
+- Reality boundary: no claim of fiber-laser kerf, heat-affected zone, or minimum feature size
 - Structure: available 1/8-inch-wall tube with laser-cut/formable metal parts
 - Water bed: one-piece welded pan, designed so welding distortion does not alter rail alignment
 - Guidance: profile linear rails on X and both Y sides
@@ -16,21 +19,31 @@
 - Tube-running rolling carriages: excluded
 - Gantry: independent Y-left/Y-right drive and automatic squaring
 - Z: powered precision slide with mandatory floating touch-off and separate breakaway
-- Plasma source: Everlast PowerPlasma 82i
+- Plasma source: existing Everlast PowerPlasma 82i available for development; production source/torch/consumables open pending cut tests
 - THC: mandatory closed-loop arc-voltage THC
 - Preferred control direction: LinuxCNC + QtPlasmaC with deterministic Ethernet motion and isolated arc-voltage interface
 - FluidNC/Jackpot: retained only as a candidate pending documented requirement testing
 - Operator interface: complete plasma-machine interface; generic G-code sender alone is not acceptable
 
+## Process-quality rule
+
+The machine frame is only one part of the result. X-1 shall be developed as a complete cutting system including:
+
+- motion accuracy and reversal performance;
+- source, torch, and consumable selection;
+- dry and pressure-stable compressed air;
+- probing, pierce height, cut height, and torch timing;
+- position-aware THC and velocity anti-dive;
+- CAM strategy, small-hole behavior, kerf compensation, and cut sequence;
+- material-specific profiles and controlled test coupons.
+
 ## CrossFire PRO reference boundary
 
 Keep as references:
 
-- compact table proportions and packaging;
+- compact packaging;
 - dual-Y layout;
-- frame/leg/stanchion concepts;
-- one-piece water-bed adaptation;
-- slat system;
+- frame and water/slat concepts;
 - powered floating-head purpose;
 - assembly and alignment sequence.
 
@@ -41,8 +54,6 @@ Do not copy:
 - rolling bearings directly on tube rails;
 - Langmuir controls, FireControl, computer, or LS-THC.
 
-The assembly guide confirms the reference machine uses three lead screws, rolling tube carriages, NEMA 23 motors, and a floating IHS head. Those features explain the reference architecture but are not all suitable for the X-1 precision target.
-
 ## Current active issues
 
 1. **#3 — Select exact profile rails, blocks, lengths, and mounting strategy**
@@ -51,32 +62,33 @@ The assembly guide confirms the reference machine uses three lead screws, rollin
 4. **#8 — Select the closed-loop THC and isolated voltage architecture**
 5. **#9 — Select/validate the production operator and controller software stack**
 6. **#6 — Build the Rev B SolidWorks precision-machine assembly after components freeze**
+7. **New process issue — Select and validate the production plasma source, machine torch, fine-cut consumables, air treatment, and 10–18 gauge cut charts**
 
 ## Immediate next actions
 
 1. Freeze the practical material-support target and desired cut envelope.
-2. Set target thin-sheet cut speed, rapid speed, acceleration, and contouring requirements.
-3. Select Y profile-rail candidates and X profile-rail candidates from exact drawings.
-4. Build candidate ball-screw calculations for:
-   - X: 16 mm and 20 mm diameter; 10 mm and higher leads;
-   - Y-left/Y-right: 16 mm and 20 mm diameter; 10 mm and higher leads;
-   - fixed-supported and fixed-fixed support arrangements.
-5. Calculate actual bearing span, root diameter, 80%-critical-speed operating ceiling, maximum linear speed, motor RPM, torque, and screw inertia.
-6. Compare closed-loop NEMA 23/24 drives against 400 W-class AC servos.
-7. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting the cost and availability.
-8. Design the one-piece pan and rail-support structure so final rail alignment happens after welding.
-9. Design the Z floating touch-off and breakaway system.
-10. Create the first precision-motion SolidWorks envelope and collision study.
+2. Set target cut speed, rapid speed, acceleration, backlash, and repeatability requirements.
+3. Select Y and X profile-rail candidates from exact drawings.
+4. Build candidate ball-screw calculations for X and Y using actual bearing span, root diameter, support arrangement, RPM, torque, and inertia.
+5. Compare closed-loop NEMA 23/24 drives against 400 W-class AC servos.
+6. Bench-test the Everlast PowerPlasma 82i on controlled 10, 12, 14, 16, and 18 gauge coupons using the best approved low-amperage machine-torch consumables available.
+7. Compare the Everlast results against at least one mechanized fine-cut plasma process before declaring the production source.
+8. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting cost and availability.
+9. Design the one-piece pan and rail-support structure so final rail alignment occurs after welding.
+10. Design the Z floating touch-off and breakaway system.
+11. Create the first precision-motion SolidWorks envelope and collision study.
 
 ## Phase 1 exit criteria
 
-- machine mission and material/cut envelope frozen;
+- 10–18 gauge mission and realistic laser-comparison boundary frozen;
+- material support and cutting envelope frozen;
 - exact X/Y profile rails and blocks selected;
 - exact X/Y ball screws, nuts, supports, and couplers selected;
 - critical-speed, linear-speed, torque, acceleration, and resolution calculations completed;
 - motors and drives selected;
 - Z guide, screw, floating mechanism, touch-off switch, and breakaway selected;
 - one-piece pan/frame/rail-mount architecture frozen;
+- production plasma source, torch, consumables, air-treatment requirements, and baseline cut charts selected;
 - controller, operator interface, I/O, Arc OK, voltage input, and THC architecture selected;
 - selected components have verified drawings or physical measurements;
 - decision log and requirements current;
@@ -90,7 +102,8 @@ Do not expand active work into:
 - ACME or trapezoidal main-axis screws;
 - tube-running rolling carriages;
 - 4 × 8 expansion or attempts to replace the existing large plasma table;
-- fiber laser, rotary axis, nesting, quoting, cloud, mobile, AI, or commercial packaging;
+- building an actual fiber laser source or unsafe open Class 4 laser system;
+- rotary axis, nesting, quoting, cloud, mobile, AI, or commercial packaging;
 - custom operator software that merely duplicates mature QtPlasmaC functions before the machine architecture is frozen.
 
 ## Update rule
