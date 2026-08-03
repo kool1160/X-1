@@ -34,7 +34,7 @@ The finest-detail expectations apply primarily to 14–18 gauge. The 10–12 gau
 - precision powered Z with floating touch-off, mechanical overtravel, and separate torch breakaway;
 - protected rails, screws, nuts, and lubrication points.
 
-The CrossFire PRO guide remains useful for compact packaging, dual-Y arrangement, water/slat concepts, floating-head purpose, and assembly order. Its ACME screws and tube-running rolling carriages are not part of the X-1 precision architecture. fileciteturn121file0
+The CrossFire PRO guide remains useful for compact packaging, dual-Y arrangement, water/slat concepts, floating-head purpose, and assembly order. Its ACME screws and tube-running rolling carriages are not part of the X-1 precision architecture.
 
 ## Plasma and controls baseline
 
