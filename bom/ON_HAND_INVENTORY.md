@@ -4,7 +4,7 @@
 
 | ID | Category | Manufacturer/model | Qty | Condition | Key ratings/dimensions | Reuse decision | Evidence/location |
 |---|---|---|---:|---|---|---|---|
-| SRC-001 | CNC plasma source | LOTOS APEX LTP6300DCNC | 1 | On hand; previously ran on JD's Garage table | 20–63 A on 220/240 V; non-HF blowback pilot arc; CNC torch-start input; Arc OK output; 1:1 raw arc-voltage output; machine torch on hand | Baseline production-source candidate; controlled 10–18 gauge testing required | Owner photo; official LOTOS product/manual; issue #15 |
+| SRC-001 | CNC plasma source | LOTOS LTP5500DCNC | 1 | On hand; previously ran on JD's Garage table | 20–55 A on 220/240 V; 20–35 A on 110/120 V; non-HF blowback pilot arc; CNC torch-start interface; 1:1 raw arc-voltage/THC output; machine torch on hand | Baseline production-source candidate; controlled 10–18 gauge testing required | Owner photo; official LOTOS product/manual; issue #15 |
 | SRC-002 | CNC plasma source | Everlast PowerPlasma 82i | 1 | On hand | 20–80 A; machine torch; CNC interface/divided voltage previously investigated | Development/comparison source | Existing table and project records; issue #15 |
 | CTRL-001 | Controller | V1 Engineering Jackpot CNC Controller V1.2.1 | 1 | On hand | TBD board/ESP32/firmware details | Evaluate; no longer assumed production controller | Photos required |
 | DRV-001 | Stepper driver | TMC2209 modules installed on Jackpot | TBD | On hand | Current/microstep settings TBD | Evaluate | Photos/settings required |
@@ -17,13 +17,13 @@
 
 ## LOTOS source record still required
 
-- machine-torch manufacturer/model and lead length;
+- exact machine-torch manufacturer/model and lead length;
 - installed nozzle/electrode/shield part numbers;
 - available nozzle-orifice and amperage options;
-- exact 2-pin and 5-pin mating connectors/cables on hand;
-- verify torch-start contact requirements;
-- verify Arc OK contact type, voltage, polarity, and loading;
-- verify 1:1 arc-voltage polarity and loaded voltage during controlled cuts;
+- exact mating CNC/THC connectors and cables on hand;
+- verify torch-start contact requirements and pinout on this exact unit;
+- verify whether a separate Arc OK contact is present and document its electrical behavior;
+- verify 1:1 raw arc-voltage polarity and loaded voltage during controlled cuts;
 - design the required isolated high-voltage divider/THCAD interface before connecting arc voltage to any controller;
 - document 220/240 V branch circuit and actual air system;
 - record prior JD's Garage cut results and known problems.
