@@ -2,71 +2,95 @@
 
 ## Project
 
-**X-1 — Laser X Design 1** is a purpose-built CNC plasma table designed around available 1/8-inch-wall steel tube, laser-cut and formed metal parts, purchased linear guides, a V1 Engineering Jackpot controller, FluidNC motion firmware, dedicated X-1 operator software, and a required automatic torch-height-control system.
+**X-1 — Laser X Design 1** is a mechanically faithful CrossFire PRO-style CNC plasma table using the original machine's frame, rail, carriage, lead-screw, motor, water-table, slat-bed, and floating-Z architecture.
 
-X-1 is not a direct copy of the JD's Garage or Langmuir machines. Those files are references for proportions, assembly methods, alignment practices, drive concepts, water-table construction, and component ideas. Released X-1 parts must be designed from verified X-1 requirements and the exact hardware selected for this build.
+X-1 will **not** use Langmuir electronics, FireControl, the Langmuir computer, or the LS-THC system. The control stack remains:
 
-## Current baseline
+- V1 Engineering Jackpot controller
+- FluidNC or a controlled X-1 FluidNC fork
+- dedicated X-1 Windows operator software
+- X-1 isolated plasma interface and required automatic THC
 
-- Material capacity: the table shall provide approximately 50 × 50 inches of clear sheet-support area so an untrimmed 48 × 48 inch half-sheet can be loaded with about 1 inch of clearance on every side.
-- Cutting envelope: not locked. Actual X/Y cut travel will be calculated from the selected guides, carriages, drive hardware, torch offset, and required overtravel. It may be smaller than 48 × 48 inches.
-- Extra Y length is not a project goal. Long work is handled by the existing large laser, so the X-1 should remain compact and inexpensive.
-- Main frame: welded 1/8-inch-wall steel tube
-- Exterior appearance: removable laser-cut skins and guards around the tube structure
-- X/Y guidance: purchased linear guides with metal structural carriages
-- Gantry: independent left and right Y drives with separate homing switches for automatic squaring
-- Controller: V1 Engineering Jackpot CNC Controller V1.2.1
-- Motion firmware: FluidNC
-- Operator software: dedicated Windows X-1 machine application, not merely a generic G-code sender
-- Plasma source: Everlast PowerPlasma 82i
-- THC: required for the finished machine; exact FluidNC-compatible architecture remains an active design decision
-- Commissioning sequence: prove probing and fixed-height cutting first, then integrate and validate closed-loop THC before the production release is considered complete
+## Mechanical baseline
+
+The target mechanical envelope is the standard CrossFire PRO, not the PRO MAX:
+
+- published cutting envelope: **48.25 in X × 33.3 in Y**
+- published floor space: approximately **54.2 in × 69.5 in**
+- full 4-foot sheet-width support/pass-through capability
+- welded/bolted structural steel tube frame with gussets
+- stainless water tray and replaceable slat bed
+- zinc-plated steel tube motion rails with adjustable ball-bearing carriages
+- powered floating Z axis with initial-height sensing
+
+## Main-axis drive system
+
+The CrossFire PRO does not use ball screws. It uses multi-start ACME lead screws with acetal anti-backlash nuts:
+
+- **Y-left:** 3/8-8, 4-start ACME lead screw
+- **Y-right:** 3/8-8, 4-start ACME lead screw
+- **X:** 1/2-10, 5-start ACME lead screw
+- both screw types advance **0.5 inch per revolution**
+- each screw is coupled to a NEMA 23 stepper at one end and supported by a 608 bearing at the opposite end
+
+Published motor sizes:
+
+- X: NEMA 23, 284 oz-in
+- Y-left: NEMA 23, 284 oz-in
+- Y-right: NEMA 23, 284 oz-in
+- Z: NEMA 23, 180 oz-in
+
+## Replica scope
+
+### Copy mechanically
+
+- overall frame layout and proportions
+- lower frame tubes, legs, stanchions, gussets, and skirts
+- two Y tube rails and adjustable rolling carriages
+- gantry tube, X carriage, motor mounts, and bearing mounts
+- OEM-equivalent ACME screws, anti-backlash nuts, bearings, couplers, and NEMA 23 motors
+- water tray, drains, slat holders, and slats
+- powered floating Z and initial-height-sense mechanism
+- assembly and alignment sequence from the CrossFire PRO guide
+
+### Replace with X-1 systems
+
+- motion-control electronics
+- USB controller
+- FireControl software
+- Langmuir computer/touchscreen
+- torch-firing interface
+- LS-THC and voltage interface
+- wiring harness and enclosure layout where needed for Jackpot/FluidNC
+
+## Accuracy rule
+
+The assembly guide identifies parts, hardware, sequence, screw diameters, bearings, and adjustment methods, but it is not a manufacturing drawing package. Published overall dimensions and motion specifications are authoritative; hidden hole locations, tube cut lengths, carriage plates, mount geometry, and Z details must be reconstructed from verified measurements, additional drawings, or a controlled reverse-engineering model.
+
+The project may be called an exact mechanical replica only after the released CAD matches all verified dimensions and reproduces the published work envelope without invented critical geometry.
 
 ## Active phase
 
-**Phase 1 — Architecture and Component Freeze**
+**Phase 1 — CrossFire PRO Mechanical Reconstruction**
 
-The project is selecting exact guides, drive components, motors/drivers, Z-axis hardware, standard lengths, and the complete THC architecture. Frame dimensions, mounting patterns, Rev B manufacturing drawings, the final FluidNC configuration, and production operator software remain blocked until those selections are verified.
+Immediate work:
 
-## Active work, in order
-
-1. Inventory reusable controller, motors, drives, power supplies, switches, relays, and enclosure hardware.
-2. Select exact X and Y guide packages that support a compact machine with approximately 50 × 50 inches of sheet-support area.
-3. Select the complete X/Y drive architecture and actual components.
-4. Select the Z-axis guide and drive.
-5. Select the required THC architecture, including voltage sensing, isolation, Z-control method, anti-dive behavior, and operator-software interface.
-6. Complete the FluidNC communication proof of concept for X-1 Control.
-7. Freeze usable travel, overall envelope, motor/driver strategy, I/O requirements, and subsystem boundaries.
-8. Release Rev B CAD, drawings, BOM, wiring, FluidNC configuration, and implementation plans for X-1 Control and THC.
-
-## Not active yet
-
-The following are deliberately deferred so the project does not drift:
-
-- controller migration to Mesa, LinuxCNC, EtherCAT, or another platform unless FluidNC fails a documented requirement;
-- fiber-laser development;
-- 4×5, 4×6, or 4×8 expansion beyond the compact half-sheet target;
-- rotary-axis development;
-- full CAM, nesting, quoting, cloud, mobile, or AI features;
-- commercial production or sales packaging.
-
-THC is not parked. Its architecture is active now; implementation and tuning follow the staged machine-commissioning plan.
-
-Deferred ideas belong in [`docs/PARKING_LOT.md`](docs/PARKING_LOT.md), not in the active phase.
+1. Build the source-derived mechanical baseline.
+2. Source exact-equivalent ACME screws, nuts, bearings, couplers, and motors.
+3. Reconstruct frame, rail, carriage, gantry, water tray, and Z geometry.
+4. Separate verified dimensions from inferred dimensions.
+5. Release a complete SolidWorks assembly, tube cut list, plate DXFs, fabrication drawings, and mechanical BOM.
+6. Integrate Jackpot/FluidNC, X-1 Control, and X-1 THC without changing the mechanical envelope unless a documented interference requires it.
 
 ## Sources of truth
 
-Read these in order:
+Read in this order:
 
-1. [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) — current active phase, blockers, and next work
-2. [`docs/DECISION_LOG.md`](docs/DECISION_LOG.md) — locked decisions
-3. [`docs/REQUIREMENTS.md`](docs/REQUIREMENTS.md) — mandatory design requirements
-4. [`docs/PROJECT_RULES.md`](docs/PROJECT_RULES.md) — scope and workflow rules
-5. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — system architecture
-6. [`docs/THC_ARCHITECTURE.md`](docs/THC_ARCHITECTURE.md) — required THC decision and validation plan
-7. [`docs/OPERATOR_SOFTWARE.md`](docs/OPERATOR_SOFTWARE.md) — machine-software architecture
-8. reference files — useful examples, but not X-1 manufacturing authority
-
-## Phase 1 completion gate
-
-Phase 1 is complete only when exact guide, drive, motor/driver, and Z components are selected; a viable THC architecture is selected; verified drawings or physical measurements exist; the table provides approximately 50 × 50 inches of usable sheet-support area; actual cut travel is calculated; the decision log is updated; and the machine can be modeled without inventing dimension-critical or control-critical details.
+1. [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)
+2. [`docs/DECISION_LOG.md`](docs/DECISION_LOG.md)
+3. [`docs/REQUIREMENTS.md`](docs/REQUIREMENTS.md)
+4. [`docs/CROSSFIRE_PRO_MECHANICAL_BASELINE.md`](docs/CROSSFIRE_PRO_MECHANICAL_BASELINE.md)
+5. [`docs/PROJECT_RULES.md`](docs/PROJECT_RULES.md)
+6. [`docs/THC_ARCHITECTURE.md`](docs/THC_ARCHITECTURE.md)
+7. [`docs/OPERATOR_SOFTWARE.md`](docs/OPERATOR_SOFTWARE.md)
+8. original reference material
