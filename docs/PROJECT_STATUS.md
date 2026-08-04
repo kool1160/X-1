@@ -1,115 +1,113 @@
 # X-1 Project Status
 
-**Status date:** 2026-08-03  
-**Active phase:** Phase 1 — Precision Motion, Plasma Process, and Control Freeze  
+**Status date:** 2026-08-04  
+**Active phase:** Phase 0 — Compare SPX4300 Retrofit vs New Compact Machine  
 **Project owner:** Chris Hilton  
-**Primary objective:** Freeze a compact 10–18 gauge precision plasma architecture that approaches fiber-laser-like contour quality as closely as practical without fiber-laser cost.
+**Lock state:** No mechanical, drive, control, or machine-path decision is locked unless Chris explicitly says to lock it.
 
-## Current baseline
+## Active planning question
 
-- Mission: precision mild-steel cutting from 10 gauge through 18 gauge
-- Fine-detail emphasis: 14, 16, and 18 gauge intricate signs and delicate profiles
-- Heavier-sheet requirement: clean, accurate, repeatable 10 and 12 gauge profiles
-- Reality boundary: no claim of fiber-laser kerf, heat-affected zone, or minimum feature size
-- Structure: available 1/8-inch-wall tube with laser-cut/formable metal parts
-- Water bed: one-piece welded pan, designed so welding distortion does not alter rail alignment
-- Guidance: profile linear rails on X and both Y sides
-- Main-axis drive: recirculating ball screws on X, Y-left, and Y-right
-- Main-axis ACME screws: excluded
-- Tube-running rolling carriages: excluded
-- Gantry: independent Y-left/Y-right drive and automatic squaring
-- Z: powered precision slide with mandatory floating touch-off and separate breakaway
-- Baseline plasma candidate: on-hand LOTOS LTP5500DCNC with machine torch, 20–55 A on 220/240 V, non-HF blowback start, CNC torch-start interface, and 1:1 raw arc-voltage/THC output
-- Comparison plasma source: on-hand Everlast PowerPlasma 82i with machine torch
-- Production source/torch/consumables: open pending controlled 10–18 gauge cut tests
-- THC: mandatory closed-loop arc-voltage THC; LOTOS raw voltage requires a properly engineered isolated high-voltage divider/THCAD interface; Arc OK availability must be verified on this exact unit
-- Preferred control direction: LinuxCNC + QtPlasmaC with deterministic Ethernet motion and isolated arc-voltage interface
-- FluidNC/Jackpot: retained only as a candidate pending documented requirement testing
-- Operator interface: complete plasma-machine interface; generic G-code sender alone is not acceptable
+Which investment produces the best precision-plasma result:
 
-## Process-quality rule
+1. upgrade the existing large SPX4300-based table;
+2. build a separate compact X-1 machine;
+3. use a staged approach where selected retrofit work proves the source, controls, THC, and motion concepts before a final path is chosen?
 
-The machine frame is only one part of the result. X-1 shall be developed as a complete cutting system including:
+## Shared performance objective
 
-- motion accuracy and reversal performance;
-- source, torch, and consumable selection;
-- dry and pressure-stable compressed air;
-- probing, pierce height, cut height, and torch timing;
-- position-aware THC and velocity anti-dive;
-- CAM strategy, small-hole behavior, kerf compensation, and cut sequence;
-- material-specific profiles and controlled test coupons.
+- Precision cutting in 10, 12, 14, 16, and 18 gauge mild steel.
+- Highest detail priority on 14–18 gauge signs and small features.
+- Clean, accurate, repeatable profiles on 10–12 gauge.
+- Improve motion, torch height, consumables, air, CAM, and controls until the plasma process is the dominant remaining limitation.
+- No claim that conventional plasma will equal fiber-laser kerf or minimum feature size.
 
-## CrossFire PRO reference boundary
+## Option A — SPX4300 precision retrofit
 
-Keep as references:
+Provisional study only.
 
-- compact packaging;
-- dual-Y layout;
-- frame and water/slat concepts;
-- powered floating-head purpose;
-- assembly and alignment sequence.
+Potentially retain:
 
-Do not copy:
+- main frame;
+- water pan and slat bed;
+- legs and supports;
+- source and machine torch;
+- enclosure shell and portions of cable routing.
 
-- ACME main-axis screws;
-- acetal anti-backlash nuts;
-- rolling bearings directly on tube rails;
-- Langmuir controls, FireControl, computer, or LS-THC.
+Potentially replace or redesign:
 
-## Current active issues
+- tube-running bearings and carriages;
+- X and Y guidance;
+- rack, pinions, preload, or reduction;
+- open-loop motors and drives;
+- gantry if weight or deflection is excessive;
+- Z slide, touch-off, and breakaway;
+- controller, operator interface, and THC.
 
-1. **#3 — Select exact profile rails, blocks, lengths, and mounting strategy**
-2. **#4 — Select exact ball screws, nuts, supports, couplers, motors, and drives**
-3. **#5 — Inventory reusable controls, motors, drives, power supplies, plasma sources, and enclosure hardware**
-4. **#8 — Select the closed-loop THC and isolated voltage architecture**
-5. **#9 — Select/validate the production operator and controller software stack**
-6. **#6 — Build the Rev B SolidWorks precision-machine assembly after components freeze**
-7. **#15 — Select the production plasma source, machine torch, fine-cut consumables, air treatment, and 10–18 gauge cut charts**
+The long Y axes make precision rack drive a leading provisional option. Conventional rotating ball screws are not assumed appropriate for 8–10 foot travel.
+
+## Option B — New compact X-1
+
+Provisional study only.
+
+Potential advantages:
+
+- lower moving mass;
+- shorter rails and drives;
+- higher acceleration for intricate profiles;
+- easier contamination protection and alignment;
+- no downtime or risk to the existing production table.
+
+Potential disadvantages:
+
+- duplicated frame, pan, electrical system, and floor space;
+- additional cost for a complete second machine;
+- smaller work envelope.
+
+## On-hand plasma process candidates
+
+- LOTOS LTP5500DCNC with PlasmaDyn iPT60/PTM-60 machine torch;
+- Everlast PowerPlasma 82i with machine torch.
+
+Both remain test candidates. Neither is owner-locked as the final production source.
+
+## Current controls candidates
+
+- LinuxCNC + QtPlasmaC with deterministic Ethernet hardware;
+- Jackpot + FluidNC if it proves the complete plasma workflow;
+- other systems that satisfy the same motion, probing, recovery, operator-interface, and position-aware THC requirements.
+
+No control platform is locked.
 
 ## Immediate next actions
 
-1. Freeze the practical material-support target and desired cut envelope.
-2. Set target cut speed, rapid speed, acceleration, backlash, and repeatability requirements.
-3. Select Y and X profile-rail candidates from exact drawings.
-4. Build candidate ball-screw calculations for X and Y using actual bearing span, root diameter, support arrangement, RPM, torque, and inertia.
-5. Compare closed-loop NEMA 23/24 drives against 400 W-class AC servos.
-6. Identify the exact LOTOS machine torch and every available low-amperage nozzle/electrode/shield combination.
-7. Verify the LOTOS CNC interface on the exact unit: torch-start contact requirements and pinout, raw-voltage polarity/loading, and whether a separate Arc OK contact is present.
-8. Bench-test both the LOTOS LTP5500DCNC and Everlast PowerPlasma 82i on controlled 10, 12, 14, 16, and 18 gauge coupons.
-9. Compare the better on-hand result against at least one mechanized fine-cut plasma process before declaring the production source.
-10. Select LinuxCNC/QtPlasmaC Ethernet hardware and isolated arc-voltage input, while documenting cost and availability.
-11. Design the one-piece pan and rail-support structure so final rail alignment occurs after welding.
-12. Design the Z floating touch-off and breakaway system.
-13. Create the first precision-motion SolidWorks envelope and collision study.
+1. Inspect and measure the existing SPX4300 table:
+   - table size and actual cut envelope;
+   - frame diagonals and twist;
+   - Y rail straightness and parallelism;
+   - gantry weight and deflection;
+   - carriage play;
+   - rack backlash and pinion engagement;
+   - current motor, drive, and power-supply details.
+2. Record the current full-speed motion and cut problems.
+3. Create a Level 1, Level 2, and Level 3 retrofit cost and downtime estimate.
+4. Create an equivalent compact-machine cost estimate using the same source, control, THC, and quality targets.
+5. Test the LOTOS/iPT60 and Everlast source packages on controlled 10–18 gauge coupons.
+6. Select nothing for purchase until the retrofit-versus-new-build comparison is reviewed by the project owner.
 
-## Phase 1 exit criteria
+## Active documents
 
-- 10–18 gauge mission and realistic laser-comparison boundary frozen;
-- material support and cutting envelope frozen;
-- exact X/Y profile rails and blocks selected;
-- exact X/Y ball screws, nuts, supports, and couplers selected;
-- critical-speed, linear-speed, torque, acceleration, and resolution calculations completed;
-- motors and drives selected;
-- Z guide, screw, floating mechanism, touch-off switch, and breakaway selected;
-- one-piece pan/frame/rail-mount architecture frozen;
-- production plasma source, torch, consumables, air-treatment requirements, and baseline cut charts selected;
-- controller, operator interface, I/O, Arc OK, voltage input, and THC architecture selected;
-- selected components have verified drawings or physical measurements;
-- decision log and requirements current;
-- Rev B assembly can be modeled without dimension-critical or control-critical guesses.
+- `docs/SPX4300_RETROFIT_EVALUATION.md`
+- `docs/PROJECT_RULES.md`
+- `docs/PLASMA_SOURCE_BASELINE.md`
+- `docs/CUT_QUALITY_TARGETS.md`
+- supplied SPX4300 frame and gantry assembly guides
 
-## Current exclusions
+## Exit criteria for this phase
 
-Do not expand active work into:
-
-- an exact CrossFire PRO replica;
-- ACME or trapezoidal main-axis screws;
-- tube-running rolling carriages;
-- 4 × 8 expansion or attempts to replace the existing large plasma table;
-- building an actual fiber laser source or unsafe open Class 4 laser system;
-- rotary axis, nesting, quoting, cloud, mobile, AI, or commercial packaging;
-- custom operator software that merely duplicates mature QtPlasmaC functions before the machine architecture is frozen.
-
-## Update rule
-
-Update this file whenever the active phase, immediate priority, major blocker, or architecture boundary changes. The current repository status overrides older chat summaries and superseded concepts.
+- existing table measurements recorded;
+- retrofit levels defined with component categories, risk, downtime, and cost;
+- compact-machine alternative defined at the same level;
+- source/torch test plan defined;
+- control and THC candidates compared without assumption;
+- project owner chooses the next direction or keeps the comparison open;
+- only decisions explicitly approved with the word `lock` are entered as locked.
